@@ -26,3 +26,5 @@ jobs:
       - name: Run Makefile deploy
         run: |
           make
+          1
+          10
