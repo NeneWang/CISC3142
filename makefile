@@ -10,7 +10,7 @@ lab2:
 
 compile-file: 
 	cd ${dir} && g++ ${f}.cpp -o ${f} 
-	cd ${dir} && ./${f}
+	cd ${dir} && ./${f} < inputfile
 
 
 
