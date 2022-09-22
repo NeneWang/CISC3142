@@ -23,7 +23,8 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v2   
-      - name: Run Makefile
-        run: g++ hello.cpp
+      - name: Hello World run
+      - run: echo '#include <iostream> int main(){cout << "Hello World"}' > hello.cpp
+      - run: g++ hello.cpp
       - run: ./a.out
 
