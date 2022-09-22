@@ -6,9 +6,18 @@ What are the differences between int, long, long long,
 and short? Between an unsigned and a signed type? Between a 
 float and a double?
 
--- | int | long | long long | short
---|--|--|--|--
-size (bits) | 32 | 32 | 64 | 16
+
+They differ in size
+
+| --          | int | long | long long | short |
+| ----------- | --- | ---- | --------- | ----- |
+| size (bits) | 32  | 32   | 64        | 16    |
+
+
+Unsigned and signed type diffes that one  signed can hold **positive and negative numbers** while **singed** can only hold **Positive values**
+
+Difference `Float` and `Double`:
+
 
 
 ## ex2.2
@@ -51,11 +60,10 @@ Exercise 2.10: What are the initial values, if any, of each
 of the following
 variables?
 
---| local_int | local_str
---|--|--
-Initial Value | 1 | |
-Description | initializes as 1 | initializes as empty 
-string
+| --            | local_int        | local_str                   |
+| ------------- | ---------------- | --------------------------- |
+| Initial Value | 1                |                             |
+| Description   | initializes as 1 | initializes as empty string |
 
 
 
@@ -128,11 +136,10 @@ Prints:
 
 ## 2.27
 
-Initialization char | is legal? | Why
---|--|--
-a | No | Because it shouldn't be a constant value,  but a 
-variable
-b | Yes-Depends | Depends `i2` has to be declared first 
+| Initialization char | is legal?   | Why                                                       |
+| ------------------- | ----------- | --------------------------------------------------------- |
+| a                   | No          | Because it shouldn't be a constant value,  but a variable |
+| b                   | Yes-Depends | Depends `i2` has to be declared first                     |
 c
 d | Yes-depends | `i2` has to be declared first. 
 e | Yes-depends | `i2` has to be declared first
@@ -142,13 +149,13 @@ g | Yes
 
 ## 2.28
 
-initialization char | Legal | Why
---|--|--
-a | No | cp must be initialized
-b | No | p2 must be initialized
-c | No | ic must be initialized
-d | No |  p3 must be initialized
-e | Yes | Because p is a pointer
+| initialization char | Legal | Why                    |
+| ------------------- | ----- | ---------------------- |
+| a                   | No    | cp must be initialized |
+| b                   | No    | p2 must be initialized |
+| c                   | No    | ic must be initialized |
+| d                   | No    | p3 must be initialized |
+| e                   | Yes   | Because p is a pointer |
 
 
 
