@@ -17,7 +17,7 @@ Style | syntax
 Bold | `**text**`
 Italic | `*text*`
 Strikethrough | `~text~`
-Bold and Italic | `***text***
+Bold and Italic | `***text***`
 Quote | `> Quote`
 Quoting | Use triple backstics
 
@@ -53,6 +53,7 @@ Becomes
 **Task List**
 
 `- [ ] task item`
+`- [x] task completed`
 
 Becomes
 
