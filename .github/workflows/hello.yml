@@ -24,7 +24,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2   
       - name: Hello World run
-      - run: echo '#include <iostream> int main(){cout << "Hello World"}' > hello.cpp
+        run: echo '#include <iostream> int main(){cout << "Hello World"}' > hello.cpp
       - run: g++ hello.cpp
       - run: ./a.out
 
