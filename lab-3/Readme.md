@@ -1,6 +1,6 @@
 # Assigment Markdown
 
-## ex2.1
+## 2.1
 
 What are the differences between int, long, long long,
 and short? Between an unsigned and a signed type? Between a 
@@ -21,7 +21,7 @@ Difference `Float` and `Double`:
 - `Float` operations with double and single precisions are neglible and cheap compared to `Double`
 
 
-## ex2.2
+## 2.2
 
 Exercise 2.2: To calculate a mortgage payment, what types 
 would you use for the rate, principal, and payment? Explain why you 
