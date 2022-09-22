@@ -17,7 +17,8 @@ They differ in size
 Unsigned and signed type diffes that one  signed can hold **positive and negative numbers** while **singed** can only hold **Positive values**
 
 Difference `Float` and `Double`:
-
+- `Float` has less less precision than double
+- `Float` operations with double and single precisions are neglible and cheap compared to `Double`
 
 
 ## ex2.2
