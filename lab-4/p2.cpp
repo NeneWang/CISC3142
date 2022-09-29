@@ -14,7 +14,7 @@ int main()
 
     // TODO: Ask for the nutrition stats:
     // amount to kill (grams, INT), mass mouse (mass, INT), dieter wieght (pounds, INT),
-    // each pound is 45400g
+    // each 100 pounds is 45400g
 
     int grams_tokill, size_mouse, weight_friend;
     bool wishes_continue = true;
