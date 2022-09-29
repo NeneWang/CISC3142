@@ -5,6 +5,7 @@ using namespace std;
 
 int main(){
 
+    cout << "Size on bytes";
     cout << "char" << " " << sizeof(char) << endl;
     cout << "int" << " " << sizeof(int) << endl;
     cout << "string" << " " << sizeof(string) << endl;
