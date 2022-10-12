@@ -1,4 +1,4 @@
 CC = g++
-default: Hello
-	./Hello
-Hello: Hello.o
+default: test
+	./a.exe
+test: test.o
