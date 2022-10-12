@@ -3,6 +3,8 @@
         "*.nani": "naniscript",
         "*.js": "javascriptreact",
         "*.php": "blade",
-        "functional": "cpp"
+        "functional": "cpp",
+        "iostream": "cpp",
+        "ostream": "cpp"
     }
 }
