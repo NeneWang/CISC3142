@@ -22,10 +22,14 @@ int main(){
     cout << r <<endl; //0x61ff00
     cout << *r <<endl; //13
     r = &i;
-    *r = 0;
+    *r = 15;
 
     cout << r <<endl; //0x61ff08
-    cout << i <<endl; //0
+    cout << i <<endl; //15
+    int &refi = i;
+    refi = 30;
+    cout << i <<endl; //30
+    
 
 
 
