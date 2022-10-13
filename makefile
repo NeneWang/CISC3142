@@ -1,3 +1,15 @@
+
+
+lab5:
+	echo "running program Ex4.5\n"
+	make compile-file-only dir="lab-5" f="ex45" 
+
+save:
+	git add --all
+	git commit -m "random save :sob:"
+	git push origin HEAD
+
+
 lab4:
 	echo "running program Ex3.17\n"
 	make compile-file-input dir="lab-4" f="ex317" inputfile="inputfile317"
