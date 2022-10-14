@@ -21,12 +21,8 @@ int main(){
     string singleLine;
 
     if(inputFile.is_open()){
-        while(inputFile){
-            getline(inputFile, singleLine);
-            // singleLine >> x >> y; // I guess this doesn't work, Research how to use cin for string
-            const char* sentence = singleLine.c_str();
-            sscanf(sentence, "%lf %lf", &x, &y);
-            // printf("%f %f", x, y);
+        while(inputFile >> y >> x){
+            // printf("%f %f\n", x, y);
             countLines++;
 
             xarr.push_back(x);
@@ -39,9 +35,6 @@ int main(){
     double meanY = sumY/countLines;
 
     // Calculate X meanSquares
-    // double b1x = sumX - meanX * countLines;
-    // double b1x = 18 - 6*3;
-    // double b1y = sumY - meanY * countLines;
 
     double b1x = 0, b1y = 0, b1 = 0, bsqr = 0;
     for (int i = 0; i<countLines ; i++){
@@ -50,6 +43,7 @@ int main(){
         b1y = yarr.at(i) - meanY;
         b1+=b1x + b1y;
         bsqr += b1x*b1x;
+        // printf("b1x: %f, sqr: %f, x elem %f, x-xmean %f,  y- ymean %f, indiiv\n", b1x, bsqr, xarr.at(i), b1x, b1y, b1x-b1y);
     }
 
     double slope = b1/bsqr;
