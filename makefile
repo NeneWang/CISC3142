@@ -5,6 +5,9 @@ lab5:
 	echo "running program p1"
 	make compile-file-input dir="lab-5" f="p1" inputfile=inputfilep1
 
+	echo "running Program p2"
+	make compile-file-only dir="lab-5" f="p2"
+
 
 
 	echo "running program Ex4.5\n"
