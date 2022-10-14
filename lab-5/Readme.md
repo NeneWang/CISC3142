@@ -45,8 +45,12 @@ int main(){
     cin >> enterInput
     // for(auto c : enterInput) result += char(enterinput)
     while (enterInput > 0){
+        
+        
+        
+        int num = enterinput % 10;
         enterInput /= 10;
-        result += enterInput;
+        result += num;
     }
     cout << "Sum of digits fo the number 7865 is: " << enterInput;
 }
@@ -74,14 +78,15 @@ int main(){
     vector<int> primeNumbers;
 
     for(int i = MIN_NUM; i< MAX_NUM; i++){
-        for(int j = MIN_NUM; i < j ; i++){
+        for(int j = 2; j < i ; j++){
             if(i % j == 0){
                 break;
             }
         }
-        if(j != i) {
+        if(j == i) {
             // Then you add the num to primes
-            primeNumbers.push_back(i);
+            // primeNumbers.push_back(i);
+            cout << i;
         }
 
 
@@ -135,26 +140,47 @@ struct dot{
     int y=0;
 };
 
+class Point{
+
+}
+
 int main(){
     string inputfilename = "enter.txt";
     inputFile.open(inputfilename);
+
+    int sumX = 0;
+    int sumY = 0;
     vector<int> xarr;
     vector<int> yarr;
-    
+    int x, y;
+    int countLines = 0;
     // If inputfilename found, and able to open it, process each line, add to the counter
     if ( inputFile.is_open() ) {
         while ( inputFile ) { 
             getline (inputFile, myline);
             // ProrcessLine(myline, myline.length(), writeFile, countCharactersStripped);
-            
-            scanf("%f %f", &x, &y)
+
+            cin >> x >> y;
+            // xarr.push_back(x);
+            // xarr.push_back(x);
+
+            sumX+=y;
+            sumY+=x;
             countLines++;
+            
         }
     }
-}
 
-// Trains the model into 
-void train(){
+    // Calculate means
+    double meanX = sumX/countLines;
+    double meanY = sumY/countLines;
+
+    // Calculate X meanSquares
+    double b1x = sumX - meanX * countLines;
+    double b1y = sumX - meanX * countLines;
+
+    // Calculate Y meanSquares
+
 
 }
 

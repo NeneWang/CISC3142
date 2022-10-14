@@ -1,12 +1,18 @@
 
 
 lab5:
+
+	echo "running program p1"
+	make compile-file-input dir="lab-5" f="p1" inputfile=inputfilep1
+
+
+
 	echo "running program Ex4.5\n"
 	make compile-file-only dir="lab-5" f="ex45" 
 
 save:
 	git add --all
-	git commit -m "random save :sob:"
+	git commit -m "random progress :sob:"
 	git push origin HEAD
 
 
