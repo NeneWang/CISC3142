@@ -25,6 +25,18 @@ prefix increments the value first before running the rest of the operation, whil
 
 ![](./../img/2022-10-12-20-58-55.png)
 
+
+```
+a) fval -> bool
+b) dval becomes of fval type
+c) expression results in cval type
+```
+
+
+---
+
+# My solving Process
+
 ## Problem 1
 
 I think the books exercises are more straight forward, I might as well sip them. 
