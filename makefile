@@ -8,6 +8,8 @@ lab5:
 	echo "running Program p2"
 	make compile-file-only dir="lab-5" f="p2"
 
+	echo "running Program p3"
+	make compile-file-only dir="lab-5" f="p3"
 
 
 	echo "running program Ex4.5\n"
