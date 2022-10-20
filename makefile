@@ -1,4 +1,7 @@
 
+lab6:
+	make compile-file-only dir="lab-6" f="main"
+
 
 lab5:
 
