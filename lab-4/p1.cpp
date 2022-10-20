@@ -16,8 +16,14 @@ int main()
     cin >> cost >> number_year >> inflation;
     
     // TODO: Calculate future price
-    cout << cost * pow(inflation/100 + 1,  number_year);
+    double cost = calculateCost(cost, inflation, number_year);
+    printf("$%f", cost);
+    
 
 
     return 0;
+}
+
+double calculateCost(int cost, double inflation, int number_year){
+    return cost * pow(inflation/100 + 1,  number_year);
 }

@@ -28,6 +28,7 @@ would you use for the rate, principal, and payment? Explain why you
 selected each type.
 
 > I would use a float because I have to count also the 
+> > Rate: Float, principal: long long, payment long
 sents.
 
 ## 2.3
@@ -38,7 +39,7 @@ produce?
 ```cpp
 unsigned u = 10, u2 = 42;
 std::cout << u2 - u << std::endl;
-std::cout << u - u2 << std::endl;
+std::cout << u - u2 << std::endl; 
 int i = 10, i2 = 42;
 std::cout << i2 - i << std::endl;
 std::cout << i - i2 << std::endl;
@@ -48,7 +49,7 @@ std::cout << u - i << std::endl;
 
 ```
 32
-4294967264
+4294967264 //4294967296 - 32
 32
 -32
 0
@@ -58,15 +59,15 @@ std::cout << u - i << std::endl;
 
 ## 2.10
 Exercise 2.10: What are the initial values, if any, of each 
-of the following
-variables?
+of the following variables?
+
 
 | --            | local_int        | local_str                   |
 | ------------- | ---------------- | --------------------------- |
-| Initial Value | 1                |                             |
-| Description   | initializes as 1 | initializes as empty string |
+| Initial Value | 0                |                             |
+| Description   | initializes as 0 | initializes as empty string |
 
-
+!Initializes as 0!
 
 ## 2.12
 
@@ -74,17 +75,22 @@ Exercise 2.12: Which, if any, of the following names are
 invalid? (a) int double = 3.14; (b) int _; (c) int 
 catch-22; (d) int 1_or_2 = 1; (e) double Double = 3.14;
 
+![](./../img/2022-10-19-18-43-50.png)
 
 Invalids:
 
 ```
-(a), (b), (c)
+(a), (c), (d)
 ```
+
+_ works well if its not inside of a function
 
 ## 2.13
 
 Exercise 2.13: What is the value of j in the following 
 program?
+
+![](./../img/2022-10-19-18-46-28.png)
 
 ```cpp
 int i = 42;
@@ -137,28 +143,39 @@ Prints:
 
 ## 2.27
 
+![](./../img/2022-10-19-18-51-03.png)
+
 | Initialization char | is legal?   | Why                                                       |
 | ------------------- | ----------- | --------------------------------------------------------- |
 | a                   | No          | Because it shouldn't be a constant value,  but a variable |
 | b                   | Yes-Depends | Depends `i2` has to be declared first                     |
-c
-d | Yes-depends | `i2` has to be declared first. 
-e | Yes-depends | `i2` has to be declared first
-f | No | r2 needs to be initialized
-g | Yes 
+| d                   | Yes-depends | `i2` has to be declared first. ->                             |
+| e                   | Yes-depends | `i2` has to be declared first                             |
+| f                   | No          | r2 needs to be initialized                                |
+| g                   | Yes         |
 
+
+Conclusions
+- const address (&) can point to a constant value such as 0
+- 
 
 ## 2.28
 
-| initialization char | Legal | Why                    |
-| ------------------- | ----- | ---------------------- |
-| a                   | No    | cp must be initialized |
+![](./../img/2022-10-19-18-51-17.png)
+![](./../img/2022-10-19-18-51-23.png)
+
+| initialization char | Legal | Why                    | Teacher Feed                |
+| ------------------- | ----- | ---------------------- | --------------------------- |
+| a                   | No    | cp must be initialized | Error Reference initializer |
 | b                   | No    | p2 must be initialized |
 | c                   | No    | ic must be initialized |
 | d                   | No    | p3 must be initialized |
 | e                   | Yes   | Because p is a pointer |
 
+- const int*p not pointing to anyting is the only one it works.
 
+
+### 
 
 
 

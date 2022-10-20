@@ -141,6 +141,7 @@ you could use getline
 Then you want to run the operations
 ```
 
+Sketch
 
 ```cpp
 struct dot{
@@ -198,6 +199,10 @@ int main(){
 ```
 
 
+Final Program
+```cpp
+
+```
 
 
 
