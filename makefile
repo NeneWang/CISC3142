@@ -1,11 +1,16 @@
 
-platground:
+now:
+	make lab3
+
+playground:
 	make compile-file-only dir="playground" f="constThings"
 
 
 lab6:
 	make compile-file-only dir="lab-6" f="main"
 
+lab3:
+	make compile-file-only dir="lab-3" f="ex227"
 
 lab5:
 
