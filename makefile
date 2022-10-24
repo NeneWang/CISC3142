@@ -1,9 +1,9 @@
-
 now:
-	make lab3
+	make playground
 
 playground:
-	make compile-file-only dir="playground" f="constThings"
+	echo "Starting playground"
+	make compile-file-only dir=playground f=const
 
 
 lab6:
