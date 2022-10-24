@@ -1,4 +1,8 @@
 
+platground:
+	make compile-file-only dir="playground" f="constThings"
+
+
 lab6:
 	make compile-file-only dir="lab-6" f="main"
 
@@ -58,16 +62,16 @@ lab2:
 
 compile-file: 
 	cd ${dir} && g++ ${f}.cpp -o ${f} 
-	cd ${dir} && ./${f} < inputfile
+	cd ${dir} && ${f} < inputfile
 
 
 compile-file-only: 
 	cd ${dir} && g++ ${f}.cpp -o ${f} 
-	cd ${dir} && ./${f}
+	cd ${dir} && ${f}
 
 compile-file-input: 
 	cd ${dir} && g++ ${f}.cpp -o ${f} 
-	cd ${dir} && ./${f} < ${inputfile}
+	cd ${dir} && ${f} < ${inputfile}
 
 
 

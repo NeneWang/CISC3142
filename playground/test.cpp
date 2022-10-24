@@ -18,9 +18,11 @@ int main(){
     int *&r = p;
 
 
-    
-    cout << r <<endl; //0x61ff00
+    cout << "Testing the reference to the pointer" << endl;
+    cout << r <<endl; //0x61fefc
     cout << *r <<endl; //13
+
+    
     r = &i;
     *r = 15;
 
