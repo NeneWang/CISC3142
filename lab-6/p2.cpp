@@ -21,12 +21,8 @@ int main(){
         if(isPrime){
             primeNumbers.push_back(testPrime);
             cout << testPrime << endl;
-            // printf("%d added to the prime list\n", testPrime);
-            // cout << primeNumbers << endl;
         }
-
     }
-
 }
 }
 

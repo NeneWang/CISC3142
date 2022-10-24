@@ -55,7 +55,7 @@ int main(){
     cout << "\n" << b1x  << " <- x mean : y ->"<< b1y << countLines<< endl;
     printf("sum(x) = %f \nsum(y) = %f \nmean(x) = %f\nmean(y) = %f\nslope = %f, intercept: %f\n", sumX, sumY, meanX, meanY, slope, intercept);
 
-}
+    }
 }
 
 

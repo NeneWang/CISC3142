@@ -3,6 +3,23 @@
 
 using namespace std;
 
+
+// TODO Finish this later
+int usingIterator(vector<int> &numbers){
+    for (auto it = begin(numbers); it != end(numbers); it++){
+        *it *= 2;
+    }
+}
+
+void printAllVector(vector<int> numbers){
+    cout<<endl;
+    for(auto num: numbers){
+        cout << num << " ";
+    }
+}
+
+
+
 int main(){
 
     vector<int> numbers(10, 3);
@@ -11,14 +28,8 @@ int main(){
         cout << number*2;
     }
 
+    usingIterator(numbers);
+    printAllVector(numbers);
+
     return 0;
-}
-
-// TODO Finish this later
-int usingIterator(){
-    std::vector<int> iv(10);
-    for(int i=0; i!=10; ++i)
-        cin << 
-
-
 }
