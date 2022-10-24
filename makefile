@@ -1,10 +1,6 @@
-now:
-	make playground
-
-playground:
+playgrounda:
 	echo "Starting playground"
 	make compile-file-only dir=playground f=const
-
 
 lab6:
 	make compile-file-only dir="lab-6" f="main"
