@@ -21,7 +21,4 @@ int main(){
     cout << pc1 << endl; //0x61ff04
 
     // pc1 = &cj; // This will throw Error because you can't modify this one.
-
-
-
 }
