@@ -1,3 +1,6 @@
+current:
+	make lab7
+
 lab7:
 	make compile-file-only-mac dir="lab-7" f="test_unit"
 
