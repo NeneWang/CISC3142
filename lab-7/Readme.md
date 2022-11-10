@@ -21,6 +21,9 @@ Expected Output:
 
 ### Problem 2
 
+![](./../img/2022-11-09-20-40-05.png)
+
+![](./../img/2022-11-09-20-39-33.png)
 
 
 ### Problem 3
