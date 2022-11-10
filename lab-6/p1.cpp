@@ -16,4 +16,5 @@ int main(){
         result+=lastDigit;
     }
     printf("Sum of a digits of the number %ld is %d\n", enterInput, result);
-}}
+    }
+}

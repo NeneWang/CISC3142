@@ -1,3 +1,7 @@
+lab7:
+	make compile-file-only-mac dir="lab-7" f="test_unit"
+
+
 playgrounda:
 	echo "Starting playground"
 	make compile-file-only dir=playground f=const
@@ -69,6 +73,10 @@ compile-file:
 compile-file-only: 
 	cd ${dir} && g++ ${f}.cpp -o ${f} 
 	cd ${dir} && ${f}
+
+compile-file-only-mac: 
+	cd ${dir} && g++ ${f}.cpp -o ${f} 
+	cd ${dir} && ./${f}
 
 compile-file-input: 
 	cd ${dir} && g++ ${f}.cpp -o ${f} 
