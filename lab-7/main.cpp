@@ -47,7 +47,6 @@ public:
     }
 };
 
-
 // TODO: Unit Test this.
 class Sample
 {
@@ -56,41 +55,43 @@ private:
     double y;
 
 public:
-    Sample();            // Constructor 1
-    Sample(int);         // Constructor 2
-    Sample(int, int);    // Constructor 3
-    Sample(int, double); // Constructor 4
+    // Sample();            // Constructor 1
+    // Sample(int);         // Constructor 2
+    // Sample(int, int);    // Constructor 3
+    // Sample(int, double); // Constructor 4
 
-    Sample(){
+    Sample()
+    {
         this->x = 1;
         this->y = 0;
     }
-    Sample(int x){
+    Sample(int x)
+    {
         this->x = x;
         this->y = 0;
     }
 
-    Sample(int x, int y){
+    Sample(int x, int y)
+    {
         this->x = x;
         this->y = y;
     }
 
-    Sample(int x, double y){
+    Sample(int x, double y)
+    {
         this->x = x;
         this->y = y;
     }
 
-    int getX(){
+    int getX()
+    {
         return this->x;
     }
-    int getY(){
+    int getY()
+    {
         return this->y;
     }
-
 };
-
-
-
 
 void printTwoRectangleStats(Rectangle rec1, Rectangle rec2);
 
@@ -133,6 +134,26 @@ void printTwoRectangleStats(Rectangle rec1, Rectangle rec2)
     cout << "Area is: " << rec2.area() << endl;
 }
 
+struct Pixel
+{
+    int C, R;
+};
+void Display(Pixel P)
+{
+    cout << "Col " << P.C << " Row " << P.R << endl;
+}
 
-
-
+int P3()
+{
+    Pixel X = {40, 50}, Y, Z;
+    Z = X;
+    X.C += 10;
+    Y = Z;
+    Y.C += 10;
+    Y.R += 20;
+    Z.C -= 15;
+    cout<<endl;
+    Display(X);
+    Display(Y);
+    Display(Z);
+}
