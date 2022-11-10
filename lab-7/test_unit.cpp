@@ -93,7 +93,8 @@ void p2_test_4(){
     double doblY = 30.12;
     Sample sam1 = Sample(20, doblY);
     TEST_ASSERT(sam1.getX() == 20);
-    cout<<"My y is: " << sam1.getY();
+
+    // cout<<"My y is: " << sam1.getY();
     TEST_ASSERT(sam1.getY() == 30.12);
 
 }
