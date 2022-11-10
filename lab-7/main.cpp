@@ -87,7 +87,7 @@ public:
     {
         return this->x;
     }
-    int getY()
+    double getY()
     {
         return this->y;
     }
