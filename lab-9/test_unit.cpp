@@ -6,7 +6,15 @@
 #include <vector>
 using namespace std;
 
+#include "Forescaster.cpp"
 
+
+
+void problem1(void){
+    const string filpath="film.csv.txt";
+    Forecaster forecaster(filpath);
+    forecaster.read()
+}
 
 
 void test_p4(void){
@@ -17,5 +25,6 @@ void test_p4(void){
 
 
 TEST_LIST = {
+    {"problem1", problem1},
     {"test_p4", test_p4},
     {0}};

@@ -5,6 +5,8 @@
         "*.php": "blade",
         "functional": "cpp",
         "iostream": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "string": "cpp",
+        "xiosbase": "cpp"
     }
 }
