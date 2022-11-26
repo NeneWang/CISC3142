@@ -155,7 +155,7 @@ public:
         return ceil(sum / divideBy);
     }
 
-    void read()
+    void read(bool debug=false)
     {
         populateMonthNamesToInt(monthNameToInt, monthsNames, MONTHSNUMBER);
         string line, word;
@@ -187,7 +187,8 @@ public:
 
                 MonthStats monthSt(line_content, movingAverage);
                 monthSt.weightedAverage = weightedAverage;
-                monthSt.printStats();
+                if(debug)
+                    monthSt.printStats();
 
                 monthVector.push_back(monthSt);
             }

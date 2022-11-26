@@ -23,7 +23,7 @@ void problem1(void)
 {
     const string FILEPATH = "weather.csv.txt";
     TemperatureProcessor tempP(FILEPATH, 1);
-    tempP.read();
+    tempP.read(true);
     
     
 }
@@ -43,7 +43,7 @@ void problem2(void){
     printf("Forecasted temp using moving average for: %s is: %d\n", TARGET_MONTH, forecastedMovingAverage);
 
     int forecastWeightedAverage = tempP.forecast(TARGET_MONTH, weightedAverage);
-    printf("Forecasted temp using moving average for: %s is: %d\n", TARGET_MONTH, forecastWeightedAverage);
+    printf("Forecasted temp using Weighted average for: %s is: %d\n", TARGET_MONTH, forecastWeightedAverage);
 }
 
 
