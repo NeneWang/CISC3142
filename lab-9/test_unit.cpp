@@ -86,7 +86,8 @@ void csvRead()
 
     vector<vector<string>> content;
     vector<MovieInformation> movieCollection;
-    map<int, int> descadeCount;
+    map<int, int[2]> descadeCount;
+    
 
     vector<string> row;
     string line, word;
@@ -114,12 +115,14 @@ void csvRead()
 
             if (descadeCount.find(decade) != descadeCount.end())
             {
-                printf("Addint to decade: %d with Length %d and length %d ", decade, descadeCount[decade], movieLen);
-                descadeCount[decade] += movieLen;
+                // printf("Addint to decade: %d with Length %d and length %d ", decade, descadeCount[decade], movieLen);
+                descadeCount[decade][0] += 1;
+                descadeCount[decade][1] += movieLen;
             }
             else
             {
-                descadeCount[decade] = 0;
+                descadeCount[decade][0] = 0;
+                descadeCount[decade][1] = 0;
             }
 
             movieCollection.push_back(mvInfo);
@@ -136,7 +139,7 @@ void csvRead()
 
     for (const auto &decadeData : descadeCount)
     {
-        std::cout << decadeData.first << "\n";
+        printf("Decades: %ds average length %d, count %d\n", decadeData.first, decadeData.second[1]/ decadeData.second[0], decadeData.second[0]);
     }
 
     printf("Total Length: %d, average length %d", totalFilmLength, collectionSize);
