@@ -6,7 +6,7 @@
 #include <vector>
 
 #include "MovieProcessor.cpp"
-// #include "Forescaster.cpp"
+#include "Forecaster.cpp"
 
 #include <iostream>
 #include <fstream>
