@@ -77,22 +77,82 @@ struct MovieInformation
     }
 };
 
+const char *monthsNames[9] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"};
 
-class TemperatureProcessor{
-    string filein;
+struct MonthStats
+{
 
-    const char* months[9] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"};
+    int month_number;
+    int temp;
+    int movingAverage;
+    string month;
 
-    TemperatureProcessor(string filein){
-        this->filein = filein;
+    MonthStats(int month_numbers, int temp, int movingAverage){
+        this->month_number = month_number;
+        this->temp = temp;
+        this->movingAverage = movingAverage;
+        this->month = monthsNames[month_number];
     }
-
-    void read(){
-        
-    }
-
 };
 
+class TemperatureProcessor
+{
+    string fname;
+    int skiplines;
+    int movingScope = 3;
+    vector<MonthStats> monthVector;
+
+    TemperatureProcessor(string filein, int skiplines=1)
+    {
+        this->fname = filein;
+        this->skiplines = skiplines;
+    }
+
+    // Giving past month vector + lastMonth Temp is able to caluclte the moving average.
+    int getMovingAverage( vector<MonthStats> monthVector, int lastMonthTemp ){
+        vector<int> toAverage;
+        toAverage.push_back(lastMonthTemp);
+        int getLast = this->movingScope-1, size = monthVector.size();
+        for(int idx; idx<getLast; idx++){
+            toAverage.push_back(monthVector[size - idx].temp);
+        }
+        int average = getVectorAverage(toAverage);
+        return 0;
+    }
+
+    int getVectorAverage(vector<int> vectToaverage){
+        int sum = 0, len = vectToaverage.size();
+
+        for(int element : vectToaverage){
+            sum+=element;
+        }
+        return sum/len;
+    }
+
+    void read()
+    {
+
+        string line, word;
+        int row_idx = 0;
+        fstream file(fname, ifstream::in);
+        if (file.is_open())
+        {
+            while (getline(file, line))
+            {
+                row_idx++;
+                if(row_idx <= skiplines){
+                    continue;
+                }
+
+                int month_number = row_idx - skiplines;
+
+                MonthStats monthSt();
+
+
+            }
+        }
+    }
+};
 
 class MovieProcessor
 {

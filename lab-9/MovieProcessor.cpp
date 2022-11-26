@@ -87,7 +87,6 @@ public:
     map<string, int> directorsPerGenre;
     bool debug = false;
     vector<string> row;
-    string line, word;
 
     int totalFilmLength = 0, row_idx = 0;
     int SKIPFIRSTS = 2; // Skips the first line
@@ -100,6 +99,7 @@ public:
     void read()
     {
 
+        string line, word;
         fstream file(fname, ifstream::in);
         if (file.is_open())
         {
