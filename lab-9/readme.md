@@ -25,7 +25,7 @@ Output file...
 
 ## Extras
 
-### Create also csv for weigted average 
+### Create also csv for weighted average 
 
 This is supported by setting as true for including both average and weighted.
 
@@ -49,3 +49,7 @@ inlcude_weighted_average
 ### Forecasting all months
 
 ![](./../img/2022-11-26-16-07-45.png)
+
+- Supports all months where forecasting makes sense in.
+- If month is Jan or February not enought data for forecasting it will print `-1`
+- If is larger than the last month available (october) for forecasting, it will also print `-1`
