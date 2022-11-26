@@ -1,0 +1,10 @@
+Month, Temperature, Moving Average, WeightedAverage
+Jan, 39, 0, 0
+Feb, 42, 0, 0
+Mar, 50, 44, 43
+Apr, 60, 51, 49
+May, 71, 61, 59
+Jun, 79, 70, 69
+Jul, 85, 79, 78
+Aug, 81, 82, 83
+Sep, 76, 81, 82

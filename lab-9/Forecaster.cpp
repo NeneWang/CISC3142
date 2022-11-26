@@ -220,6 +220,11 @@ public:
 
         int monthInt = monthNameToInt[monthNameSelected];
         monthInt--;
+
+        if (monthInt < 1 || monthInt > this->monthVector.size()-1){
+            return -1;
+        }
+
         // printf("Month selected: %d", monthNameToInt[monthNameSelected]);
 
         if (mode == average)
@@ -242,6 +247,7 @@ public:
     // saves calculated figures to output file
     void to_csv(string outputfilename = "output.csv", bool includeMovingAverage = true, bool includeWeightedAverage = true)
     {
+
         vector<string> headerVect = {"Month", "Temperature"};
         if(includeMovingAverage){
             headerVect.push_back("Moving Average");
