@@ -21,10 +21,10 @@ using namespace std;
 
 void problem1(void)
 {
-    const string FILEPATH = "weather.csv.txt";
-    TemperatureProcessor tempP(FILEPATH, 1);
-    tempP.read();
-    
+    const string FILEPATH = "film.csv.txt";
+    MovieProcessor movieProcessor(FILEPATH, 2, false);
+    movieProcessor.read();
+    movieProcessor.printStats();
     
 }
 
@@ -46,7 +46,6 @@ void problem2(void){
 
 
 TEST_LIST = {
-    {"problem1", problem1},
     {"problem2", problem2},
     // {"csvRead", csvRead},
     {0}};

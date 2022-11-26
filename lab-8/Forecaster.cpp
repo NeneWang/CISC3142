@@ -9,11 +9,11 @@
 #include <cstdio>
 
 using namespace std;
-const int MONTHSNUMBER = 12;
-const char *monthsNames[MONTHSNUMBER] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+
+const char *monthsNames[9] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"};
 map<string, int> monthNameToInt;
 
-void populateMonthNamesToInt(map<string, int> &mapMonthNamesToInt, const char *monthsNames[], int monthCounts = MONTHSNUMBER)
+void populateMonthNamesToInt(map<string, int> &mapMonthNamesToInt, const char *monthsNames[], int monthCounts = 9)
 {
     for (int idx = 0; idx < monthCounts; idx++)
     {
@@ -91,55 +91,28 @@ public:
             return 0;
         }
 
-        for (int idx = 1; idx < movingScope; idx++)
-        {
-            toAverage.push_back(monthVector[size - idx].temp);
-        }
+        toAverage.push_back(monthVector[size - 1].temp);
+        toAverage.push_back(monthVector[size - 2].temp);
 
-        int average = this->getVectorAverage(toAverage, movingScope);
+        int average = this->getVectorAverage(toAverage);
 
         return average;
     }
 
-    int getMovingAverageWeighted(vector<MonthStats> monthVector, int lastMonthTemp)
+    int getVectorAverage(vector<int> vectToaverage)
     {
-        vector<int> toAverage;
-
-        int weightsToDivide = 0;
-        toAverage.push_back(lastMonthTemp);
-        int getLast = this->movingScope - 1, size = monthVector.size();
-        if (monthVector.size() < 2)
-        {
-            return 0;
-        }
-
-        for (int idx = 1; idx < movingScope; idx++)
-        {
-            int weighted = monthVector[size - idx].temp;
-            weighted*=(movingScope-idx+1); //3 -1 +1
-            weightsToDivide += idx;
-            toAverage.push_back(weighted);
-        }
-
-        int average = this->getVectorAverage(toAverage, weightsToDivide);
-
-        return average;
-    }
-
-    int getVectorAverage(vector<int> vectToaverage, int divideBy = 3 )
-    {
-        double sum = 0;
+        double sum = 0, len = vectToaverage.size();
 
         for (int element : vectToaverage)
         {
             sum += element;
         }
-        return ceil(sum / divideBy);
+        return ceil(sum / len);
     }
 
     void read()
     {
-        populateMonthNamesToInt(monthNameToInt, monthsNames, MONTHSNUMBER);
+        populateMonthNamesToInt(monthNameToInt, monthsNames, 9);
         string line, word;
         int row_idx = 0;
         fstream file(fname, ifstream::in);
@@ -174,42 +147,41 @@ public:
         }
     }
 
-    // Computes average and returns it.
-    int getAverageTemp()
-    {
 
+    // Computes average and returns it.
+    int getAverageTemp(){
+        
         int temperatureSum = 0;
         int count = this->monthVector.size();
-        for (MonthStats tempData : this->monthVector)
-        {
-            temperatureSum += tempData.temp;
+        for( MonthStats tempData : this->monthVector){
+            temperatureSum+=tempData.temp;
         }
 
-        this->averageTemperature = temperatureSum / count;
+        this->averageTemperature = temperatureSum/count;
         return this->averageTemperature;
     }
 
     // Using a forecast method prints the forecast for a specific month number
-    int forecast(const char *monthNameSelected, ForecastStrategy mode = average)
+    int forecast(const char* monthNameSelected, ForecastStrategy mode = average)
     {
         if (monthNameSelected == "")
         {
             return -1;
         }
         printf("Month selected: %d", monthNameToInt[monthNameSelected]);
-
-        if (mode == average)
-        {
+        
+        if(mode == average){
             int averageTemperature = this->getAverageTemp();
             return averageTemperature;
         }
-        else if (mode == pastThreeMonths)
-        {
+        else if(mode == pastThreeMonths){
             int monthInt = monthNameToInt[monthNameSelected];
-            monthInt--;
             return this->monthVector.at(monthInt).movingAverage;
         }
 
         return -1;
+
+
+
     }
 };
