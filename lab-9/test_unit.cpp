@@ -68,7 +68,17 @@ void csvRead()
         {
             // printf("%s %s %s", this->year, this->length, this->subject);
             const string SPACE = " ";
-            cout << this->year << SPACE << this->length << SPACE << this->actor << endl;
+            cout << this->year << SPACE << this->length << SPACE << this->subject << SPACE << this->director << SPACE << this->awards << endl;
+        }
+
+        bool hasAward()
+        {
+            // Returns true if award = Yes
+
+            if (this->awards == "Yes")
+            {
+                return true;
+            }
         }
 
         int getDecade()
@@ -76,8 +86,10 @@ void csvRead()
             if (this->year <= 999 || this->year > 9999)
             {
                 printf("Possible error in the code? year was %d\n", this->year);
+                this->printContent();
+                cout << endl;
             }
-            int decade =  this->year / 10;
+            int decade = this->year / 10;
             return decade * 10;
         }
     };
@@ -86,19 +98,25 @@ void csvRead()
 
     vector<vector<string>> content;
     vector<MovieInformation> movieCollection;
-    map<int, int[2]> descadeCount;
-    
+    map<int, int[2]> LenCountPerYear;
+    map<string, int> directorsPerGenre;
 
     vector<string> row;
     string line, word;
 
-    int totalFilmLength = 0;
+    int totalFilmLength = 0, row_idx = 0;
+    const int SKIPFIRSTS = 2; //Skips the first line
 
     fstream file(fname, ifstream::in);
     if (file.is_open())
     {
         while (getline(file, line))
         {
+            row_idx++;
+            if(row_idx <= SKIPFIRSTS){
+                continue;
+            }
+
             row.clear();
 
             stringstream str(line);
@@ -110,20 +128,35 @@ void csvRead()
 
             int movieLen = mvInfo.length;
             int decade = mvInfo.getDecade();
+            string genre = mvInfo.subject;
 
+            // Add to the decade
             totalFilmLength += movieLen;
 
-            if (descadeCount.find(decade) != descadeCount.end())
+            if (LenCountPerYear.find(decade) != LenCountPerYear.end())
             {
                 // printf("Addint to decade: %d with Length %d and length %d ", decade, descadeCount[decade], movieLen);
-                descadeCount[decade][0] += 1;
-                descadeCount[decade][1] += movieLen;
+                LenCountPerYear[decade][0] += 1;
+                LenCountPerYear[decade][1] += movieLen;
             }
             else
             {
-                descadeCount[decade][0] = 0;
-                descadeCount[decade][1] = 0;
+                LenCountPerYear[decade][0] = 1;
+                LenCountPerYear[decade][1] = movieLen;
             }
+
+            // Add to the Directors
+            if (directorsPerGenre.find(genre) != directorsPerGenre.end())
+            {
+                directorsPerGenre[genre] += mvInfo.hasAward() ? 1 : 0;
+            }
+            else
+            {
+                // printf("New genre %s found", genre);
+                // cout << genre;
+                directorsPerGenre[genre] = mvInfo.hasAward() ? 1 : 0;
+            }
+            // directorsPerGenre[]
 
             movieCollection.push_back(mvInfo);
         }
@@ -137,12 +170,19 @@ void csvRead()
         movieCollection.at(i).printContent();
     }
 
-    for (const auto &decadeData : descadeCount)
+    // Print movies Average Length per genre
+    for (const auto &decadeData : LenCountPerYear)
     {
-        printf("Decades: %ds average length %d, count %d\n", decadeData.first, decadeData.second[1]/ decadeData.second[0], decadeData.second[0]);
+        printf("Decades: %ds average length %d, count %d\n", decadeData.first, decadeData.second[1] / decadeData.second[0], decadeData.second[0]);
     }
 
-    printf("Total Length: %d, average length %d", totalFilmLength, collectionSize);
+    // Print moviews amount moviews with awards per genre
+    for (const auto &genreAwardData : directorsPerGenre)
+    {
+        printf("Genre: %s, Awards: %d\n", genreAwardData.first.c_str(), genreAwardData.second);
+    }
+
+    printf("Total Length: %d, average length %d\n", totalFilmLength, collectionSize);
 }
 
 void test_p4(void)
