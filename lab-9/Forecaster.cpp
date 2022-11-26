@@ -69,156 +69,162 @@ struct MonthStats
 
 class TemperatureProcessor
 {
-public:
-    string fname;
-    int skiplines;
-    int movingScope = 3;
-    int averageTemperature;
-    vector<MonthStats> monthVector;
+    public:
+        string fname;
+        int skiplines;
+        int movingScope = 3;
+        int averageTemperature;
+        vector<MonthStats> monthVector;
 
-    TemperatureProcessor(string filein, int skiplines = 1)
-    {
-        this->fname = filein;
-        this->skiplines = skiplines;
-    }
-
-    // Giving past month vector + lastMonth Temp is able to caluclte the moving average.
-    int getMovingAverage(vector<MonthStats> monthVector, int lastMonthTemp)
-    {
-        vector<int> toAverage;
-        toAverage.push_back(lastMonthTemp);
-        int getLast = this->movingScope - 1, size = monthVector.size();
-        if (monthVector.size() < 2)
+        TemperatureProcessor(string filein, int skiplines = 1)
         {
-            return 0;
+            this->fname = filein;
+            this->skiplines = skiplines;
         }
 
-        for (int idx = 1; idx < movingScope; idx++)
+        // Giving past month vector + lastMonth Temp is able to caluclte the moving average.
+        int getMovingAverage(vector<MonthStats> monthVector, int lastMonthTemp)
         {
-            toAverage.push_back(monthVector[size - idx].temp);
-        }
-
-        int average = this->getVectorAverage(toAverage, movingScope);
-
-        return average;
-    }
-
-    int getMovingAverageWeighted(vector<MonthStats> monthVector, int lastMonthTemp)
-    {
-        vector<int> toAverage;
-
-        int weightsToDivide = movingScope;
-        toAverage.push_back(lastMonthTemp);
-        int getLast = this->movingScope - 1, size = monthVector.size();
-        if (monthVector.size() < 2)
-        {
-            return 0;
-        }
-
-        for (int idx = 1; idx < movingScope; idx++)
-        {
-            int weighted = monthVector[size - idx].temp;
-            weighted*=(movingScope-idx+1); //3 -1 +1
-            weightsToDivide += idx;
-            toAverage.push_back(weighted);
-        }
-
-        int average = this->getVectorAverage(toAverage, weightsToDivide);
-
-        return average;
-    }
-
-    int getVectorAverage(vector<int> vectToaverage, int divideBy = 3 )
-    {
-        double sum = 0;
-
-        for (int element : vectToaverage)
-        {
-            sum += element;
-        }
-        return ceil(sum / divideBy);
-    }
-
-    void read()
-    {
-        populateMonthNamesToInt(monthNameToInt, monthsNames, MONTHSNUMBER);
-        string line, word;
-        int row_idx = 0;
-        fstream file(fname, ifstream::in);
-        cout << endl;
-        if (file.is_open())
-        {
-            while (getline(file, line))
+            vector<int> toAverage;
+            toAverage.push_back(lastMonthTemp);
+            int getLast = this->movingScope - 1, size = monthVector.size();
+            if (monthVector.size() < 2)
             {
-                row_idx++;
-                if (row_idx <= skiplines)
+                return 0;
+            }
+
+            for (int idx = 1; idx < movingScope; idx++)
+            {
+                toAverage.push_back(monthVector[size - idx].temp);
+            }
+
+            int average = this->getVectorAverage(toAverage, movingScope);
+
+            return average;
+        }
+
+        int getMovingAverageWeighted(vector<MonthStats> monthVector, int lastMonthTemp)
+        {
+            vector<int> toAverage;
+
+            int weightsToDivide = movingScope;
+            toAverage.push_back(lastMonthTemp);
+            int getLast = this->movingScope - 1, size = monthVector.size();
+            if (monthVector.size() < 2)
+            {
+                return 0;
+            }
+
+            for (int idx = 1; idx < movingScope; idx++)
+            {
+                int weighted = monthVector[size - idx].temp;
+                weighted*=(movingScope-idx+1); //3 -1 +1
+                weightsToDivide += idx;
+                toAverage.push_back(weighted);
+            }
+
+            int average = this->getVectorAverage(toAverage, weightsToDivide);
+
+            return average;
+        }
+
+        int getVectorAverage(vector<int> vectToaverage, int divideBy = 3 )
+        {
+            double sum = 0;
+
+            for (int element : vectToaverage)
+            {
+                sum += element;
+            }
+            return ceil(sum / divideBy);
+        }
+
+        void read()
+        {
+            populateMonthNamesToInt(monthNameToInt, monthsNames, MONTHSNUMBER);
+            string line, word;
+            int row_idx = 0;
+            fstream file(fname, ifstream::in);
+            cout << endl;
+            if (file.is_open())
+            {
+                while (getline(file, line))
                 {
-                    continue;
+                    row_idx++;
+                    if (row_idx <= skiplines)
+                    {
+                        continue;
+                    }
+
+                    string month_name;
+                    int month_temperature;
+                    vector<string> line_content;
+                    stringstream str(line);
+
+                    while (getline(str, word, ','))
+                        line_content.push_back(word);
+
+                    int temp = stoi(line_content.at(1));
+                    int month_number = row_idx - skiplines;
+                    int movingAverage = this->getMovingAverage(monthVector, temp);
+                    int weightedAverage = this->getMovingAverageWeighted(monthVector, temp);
+
+                    MonthStats monthSt(line_content, movingAverage);
+                    monthSt.weightedAverage = weightedAverage;
+                    monthSt.printStats();
+
+                    monthVector.push_back(monthSt);
                 }
-
-                string month_name;
-                int month_temperature;
-                vector<string> line_content;
-                stringstream str(line);
-
-                while (getline(str, word, ','))
-                    line_content.push_back(word);
-
-                int temp = stoi(line_content.at(1));
-                int month_number = row_idx - skiplines;
-                int movingAverage = this->getMovingAverage(monthVector, temp);
-                int weightedAverage = this->getMovingAverageWeighted(monthVector, temp);
-
-                MonthStats monthSt(line_content, movingAverage);
-                monthSt.weightedAverage = weightedAverage;
-                monthSt.printStats();
-
-                monthVector.push_back(monthSt);
             }
         }
-    }
 
-    // Computes average and returns it.
-    int getAverageTemp()
-    {
-
-        int temperatureSum = 0;
-        int count = this->monthVector.size();
-        for (MonthStats tempData : this->monthVector)
+        // Computes average and returns it.
+        int getAverageTemp()
         {
-            temperatureSum += tempData.temp;
+
+            int temperatureSum = 0;
+            int count = this->monthVector.size();
+            for (MonthStats tempData : this->monthVector)
+            {
+                temperatureSum += tempData.temp;
+            }
+
+            this->averageTemperature = temperatureSum / count;
+            return this->averageTemperature;
         }
 
-        this->averageTemperature = temperatureSum / count;
-        return this->averageTemperature;
-    }
-
-    // Using a forecast method prints the forecast for a specific month number
-    int forecast(const char *monthNameSelected, ForecastStrategy mode = average)
-    {
-        if (monthNameSelected == "")
+        // Using a forecast method prints the forecast for a specific month number
+        int forecast(const char *monthNameSelected, ForecastStrategy mode = average)
         {
+            if (monthNameSelected == "")
+            {
+                return -1;
+            }
+
+            
+            int monthInt = monthNameToInt[monthNameSelected];
+            monthInt--;
+            // printf("Month selected: %d", monthNameToInt[monthNameSelected]);
+
+            if (mode == average)
+            {
+                int averageTemperature = this->getAverageTemp();
+                return averageTemperature;
+            }
+            else if (mode == pastThreeMonths)
+            {
+                return this->monthVector.at(monthInt).movingAverage;
+            }
+            else if(mode == weightedAverage){
+                return this->monthVector.at(monthInt).weightedAverage;
+            }
+
             return -1;
         }
 
-        
-        int monthInt = monthNameToInt[monthNameSelected];
-        monthInt--;
-        // printf("Month selected: %d", monthNameToInt[monthNameSelected]);
-
-        if (mode == average)
-        {
-            int averageTemperature = this->getAverageTemp();
-            return averageTemperature;
-        }
-        else if (mode == pastThreeMonths)
-        {
-            return this->monthVector.at(monthInt).movingAverage;
-        }
-        else if(mode == weightedAverage){
-            return this->monthVector.at(monthInt).weightedAverage;
+        // saves calculated figures to output file
+        void to_csv(){
+            
         }
 
-        return -1;
-    }
 };

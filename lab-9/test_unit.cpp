@@ -47,8 +47,20 @@ void problem2(void){
 }
 
 
+void problem3(void){
+    const string FILEPATH = "weather.csv.txt";
+    TemperatureProcessor tempP(FILEPATH, 1);
+    tempP.read();
+    tempP.to_csv();
+}
+
+
+
+
+
 TEST_LIST = {
     {"problem1", problem1},
     {"problem2", problem2},
+    {"problem3", problem3},
     // {"csvRead", csvRead},
     {0}};
