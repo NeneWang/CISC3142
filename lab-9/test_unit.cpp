@@ -51,7 +51,8 @@ void problem3(void){
     const string FILEPATH = "weather.csv.txt";
     TemperatureProcessor tempP(FILEPATH, 1);
     tempP.read();
-    tempP.to_csv();
+    tempP.to_csv("output.csv", true, false);
+    
 }
 
 
