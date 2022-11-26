@@ -5,7 +5,6 @@
 #include <iostream>
 #include <vector>
 
-#include "MovieProcessor.cpp"
 #include "Forecaster.cpp"
 
 #include <iostream>
@@ -90,5 +89,4 @@ TEST_LIST = {
     {"problem3", problem3},
     {"inlcude_weighted_average", inlcude_weighted_average},
     {"test_forecast_all_months", test_forecast_all_months},
-    // {"csvRead", csvRead},
     {0}};
