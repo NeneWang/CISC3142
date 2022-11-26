@@ -21,14 +21,17 @@ using namespace std;
 
 void problem1(void)
 {
-    const string filpath = "film.csv.txt";
-    MovieProcessor forecaster(filpath, 2, false);
-    forecaster.read();
-    forecaster.printStats();
+    const string FILEPATH = "film.csv.txt";
+    MovieProcessor movieProcessor(FILEPATH, 2, false);
+    movieProcessor.read();
+    movieProcessor.printStats();
 }
 
 void problem2(void){
-    ;
+    const string FILEPATH = "weather.csv.txt";
+    TemperatureProcessor tempP(FILEPATH);
+    tempP.read();
+
 }
 
 void test_p4(void)
@@ -39,7 +42,8 @@ void test_p4(void)
 }
 
 TEST_LIST = {
-    {"problem1", problem1},
+    // {"problem1", problem1},
+    {"problem2", problem2},
     // {"csvRead", csvRead},
     // {"test_p4", test_p4},
     {0}};

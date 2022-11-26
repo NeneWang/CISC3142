@@ -15,55 +15,77 @@ const char *monthsNames[9] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "
 struct MonthStats
 {
 
-    int month_number;
+    int month_number = 0;
     int temp;
     int movingAverage;
     string month_name;
 
-    MonthStats(int month_numbers, int temp, int movingAverage){
+    MonthStats(int month_numbers, int temp, int movingAverage)
+    {
         this->month_number = month_number;
         this->temp = temp;
         this->movingAverage = movingAverage;
         this->month_name = monthsNames[month_number];
+        this->month_name = this->month_name.c_str();
     }
 
-    void printStats(){
-        printf("Month n: %d, month: %s, temperature: %d, moving average: %d", month_number, month_name, temp, movingAverage);
+    MonthStats(vector<string> vectStr, int movingAverage)
+    {
+        this->month_name = vectStr.at(0);
+        try
+        {
+            this->temp = stoi(vectStr.at(1));
+        }
+        catch (const exception &e)
+        {
+            cout << "Error when parsing temperature from: " << vectStr.at(1) << endl;
+        }
+
+        this->movingAverage = movingAverage;
+    }
+
+    void printStats()
+    {
+        printf("Month n: %d, month: %s, temperature: %d, moving average: %d\n", month_number, month_name.c_str(), temp, movingAverage);
     }
 };
 
 class TemperatureProcessor
 {
+public:
     string fname;
     int skiplines;
     int movingScope = 3;
     vector<MonthStats> monthVector;
 
-    TemperatureProcessor(string filein, int skiplines=1)
+    TemperatureProcessor(string filein, int skiplines = 1)
     {
         this->fname = filein;
         this->skiplines = skiplines;
     }
 
     // Giving past month vector + lastMonth Temp is able to caluclte the moving average.
-    int getMovingAverage( vector<MonthStats> monthVector, int lastMonthTemp ){
+    int getMovingAverage(vector<MonthStats> monthVector, int lastMonthTemp)
+    {
         vector<int> toAverage;
         toAverage.push_back(lastMonthTemp);
-        int getLast = this->movingScope-1, size = monthVector.size();
-        for(int idx; idx<getLast; idx++){
+        int getLast = this->movingScope - 1, size = monthVector.size();
+        for (int idx; idx < getLast; idx++)
             toAverage.push_back(monthVector[size - idx].temp);
-        }
+
         int average = this->getVectorAverage(toAverage);
         return 0;
     }
 
-    int getVectorAverage(vector<int> vectToaverage){
+    int getVectorAverage(vector<int> vectToaverage)
+    {
         int sum = 0, len = vectToaverage.size();
 
-        for(int element : vectToaverage){
-            sum+=element;
+        for (int element : vectToaverage)
+        {
+            sum += element;
         }
-        return sum/len;
+        return sum / len;
     }
 
     void read()
@@ -77,7 +99,8 @@ class TemperatureProcessor
             while (getline(file, line))
             {
                 row_idx++;
-                if(row_idx <= skiplines){
+                if (row_idx <= skiplines)
+                {
                     continue;
                 }
 
@@ -86,21 +109,19 @@ class TemperatureProcessor
                 vector<string> line_content;
                 stringstream str(line);
 
-                while (getline(str, word, ';'))
+                while (getline(str, word, ','))
                     line_content.push_back(word);
-                
 
                 // TODO: Populate with actual temperature
-                int temp = 0;
+                int temp = stoi(line_content.at(1));
+                // cout << line_content.at(0);
                 int month_number = row_idx - skiplines;
                 int movingAverage = this->getMovingAverage(monthVector, temp);
-                MonthStats monthSt(month_number, temp, movingAverage);
-                cout<<"Created Month stats:" << endl;
+                MonthStats monthSt(line_content, movingAverage);
+                // cout << "Created Month stats:" << endl;
                 monthSt.printStats();
 
                 monthVector.push_back(monthSt);
-
-
             }
         }
     }
