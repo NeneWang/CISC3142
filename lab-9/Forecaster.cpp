@@ -70,11 +70,17 @@ public:
         vector<int> toAverage;
         toAverage.push_back(lastMonthTemp);
         int getLast = this->movingScope - 1, size = monthVector.size();
-        for (int idx; idx < getLast; idx++)
-            toAverage.push_back(monthVector[size - idx].temp);
+        if(monthVector.size() <= 2){
+            return 0;
+        }
+
+        toAverage.push_back(monthVector[size - 1].temp);
+        toAverage.push_back(monthVector[size - 2].temp);
+
 
         int average = this->getVectorAverage(toAverage);
-        return 0;
+
+        return average;
     }
 
     int getVectorAverage(vector<int> vectToaverage)
@@ -114,14 +120,18 @@ public:
 
                 // TODO: Populate with actual temperature
                 int temp = stoi(line_content.at(1));
-                // cout << line_content.at(0);
+                // cout << temp << endl;
+                
                 int month_number = row_idx - skiplines;
                 int movingAverage = this->getMovingAverage(monthVector, temp);
+
+
+
                 MonthStats monthSt(line_content, movingAverage);
-                // cout << "Created Month stats:" << endl;
                 monthSt.printStats();
 
                 monthVector.push_back(monthSt);
+                cout << "Moving average: " << monthVector.size() << endl;
             }
         }
     }
