@@ -24,7 +24,8 @@ void populateMonthNamesToInt(map<string, int> &mapMonthNamesToInt, const char *m
 enum ForecastStrategy
 {
     average,
-    pastThreeMonths
+    pastThreeMonths,
+    weightedAverage
 };
 
 struct MonthStats
@@ -34,6 +35,7 @@ struct MonthStats
     int temp;
     int movingAverage;
     string month_name;
+    int weightedAverage;
 
     MonthStats(int month_numbers, int temp, int movingAverage)
     {
@@ -105,7 +107,7 @@ public:
     {
         vector<int> toAverage;
 
-        int weightsToDivide = 0;
+        int weightsToDivide = movingScope;
         toAverage.push_back(lastMonthTemp);
         int getLast = this->movingScope - 1, size = monthVector.size();
         if (monthVector.size() < 2)
@@ -165,8 +167,10 @@ public:
                 int temp = stoi(line_content.at(1));
                 int month_number = row_idx - skiplines;
                 int movingAverage = this->getMovingAverage(monthVector, temp);
+                int weightedAverage = this->getMovingAverageWeighted(monthVector, temp);
 
                 MonthStats monthSt(line_content, movingAverage);
+                monthSt.weightedAverage = weightedAverage;
                 monthSt.printStats();
 
                 monthVector.push_back(monthSt);
@@ -196,7 +200,11 @@ public:
         {
             return -1;
         }
-        printf("Month selected: %d", monthNameToInt[monthNameSelected]);
+
+        
+        int monthInt = monthNameToInt[monthNameSelected];
+        monthInt--;
+        // printf("Month selected: %d", monthNameToInt[monthNameSelected]);
 
         if (mode == average)
         {
@@ -205,9 +213,10 @@ public:
         }
         else if (mode == pastThreeMonths)
         {
-            int monthInt = monthNameToInt[monthNameSelected];
-            monthInt--;
             return this->monthVector.at(monthInt).movingAverage;
+        }
+        else if(mode == weightedAverage){
+            return this->monthVector.at(monthInt).weightedAverage;
         }
 
         return -1;

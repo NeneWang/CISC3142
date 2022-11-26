@@ -42,6 +42,8 @@ void problem2(void){
     int forecastedMovingAverage = tempP.forecast(TARGET_MONTH, pastThreeMonths);
     printf("Forecasted temp using moving average for: %s is: %d\n", TARGET_MONTH, forecastedMovingAverage);
 
+    int forecastWeightedAverage = tempP.forecast(TARGET_MONTH, weightedAverage);
+    printf("Forecasted temp using moving average for: %s is: %d\n", TARGET_MONTH, forecastWeightedAverage);
 }
 
 
