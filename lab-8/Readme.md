@@ -21,6 +21,11 @@ make lab8
 
 ### My Solution Proof
 
+- Movie processor code found at: `MovieProcessor.cpp`
+- Unit tests found at: `test_unit.cpp`
+- Outputfile found at: `film_stats.txt`
+
+
 ![](./../img/2022-11-26-16-56-17.png)
 
 ![](./../img/2022-11-26-16-56-25.png)
