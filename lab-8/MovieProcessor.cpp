@@ -45,13 +45,19 @@ struct MovieInformation
         this->popularity = inString.at(7);
         this->awards = inString.at(8);
         this->image = inString.at(9);
+
+        if(this->debug){
+            this->printContent();
+        }
     }
 
     void printContent()
     {
         // printf("%s %s %s", this->year, this->length, this->subject);
         const string SPACE = " ";
-        cout << this->year << SPACE << this->length << SPACE << this->subject << SPACE << this->director << SPACE << this->awards << endl;
+        cout << " Year " << this->year << SPACE << "lenght " <<  this->length << SPACE << "Subject " <<  this->subject << SPACE << "director " <<  this->director << SPACE <<"awards " <<   this->awards << endl;
+        
+
     }
 
     bool hasAward()
@@ -91,14 +97,15 @@ public:
     int totalFilmLength = 0, row_idx = 0;
     int SKIPFIRSTS = 2; // Skips the first line
 
-    MovieProcessor(string fileIn, int skipFirsts = 2, bool debug = false)
+    MovieProcessor(int skipFirsts = 2, bool debug = false)
     {
-        this->fname = fileIn;
         this->SKIPFIRSTS = skipFirsts;
+        this->debug = debug;
     }
-    void read()
+    void read_csv(string fileIn)
     {
 
+        this->fname = fileIn;
         string line, word;
         fstream file(fname, ifstream::in);
         if (file.is_open())
@@ -174,18 +181,67 @@ public:
     {
 
         int collectionSize = movieCollection.size();
-        // Print movies Average Length per genre
+        
+        
+        printf("\nAverage length %d", totalFilmLength / collectionSize);
+
         for (const auto &decadeData : LenCountPerYear)
-        {
-            printf("Decades: %ds average length %d, count %d\n", decadeData.first, decadeData.second[1] / decadeData.second[0], decadeData.second[0]);
+        {   
+            if(decadeData.first == 0){
+                continue;
+            }
+            printf("\nDecades: %ds average length %d, count %d", decadeData.first, decadeData.second[1] / decadeData.second[0], decadeData.second[0]);
         }
 
         // Print moviews amount moviews with awards per genre
         for (const auto &genreAwardData : directorsPerGenre)
         {
-            printf("Genre: %s, Awards: %d\n", genreAwardData.first.c_str(), genreAwardData.second);
+            
+            if(genreAwardData.first == ""){
+                continue;
+            }
+            printf("\nGenre: %s, Awards: %d", genreAwardData.first.c_str(), genreAwardData.second);
         }
 
-        printf("Total Length: %d, average length %d\n", totalFilmLength, collectionSize);
     }
+
+    void to_file(string filename)
+    {
+        
+        ofstream writeFile;
+        writeFile.open(filename);
+
+        int collectionSize = movieCollection.size();
+        
+        
+        // printf("\nAverage length %d", totalFilmLength / collectionSize);
+
+        writeFile << "\nAverge Lenngth " << totalFilmLength / collectionSize;
+
+        for (const auto &decadeData : LenCountPerYear)
+        {   
+            if(decadeData.first == 0){
+                continue;
+            }
+            // printf("\nDecades: %ds average length %d, count %d", decadeData.first, decadeData.second[1] / decadeData.second[0], decadeData.second[0]);
+            writeFile << "\n Decades: " << decadeData.first << " average length " << decadeData.second[1] / decadeData.second[0] << " count " << decadeData.second[0];
+        }
+
+        // Print moviews amount moviews with awards per genre
+        for (const auto &genreAwardData : directorsPerGenre)
+        {
+            
+            if(genreAwardData.first == ""){
+                continue;
+            }
+
+            // printf("\nGenre: %s, Awards: %d", genreAwardData.first.c_str(), genreAwardData.second);
+            writeFile << "\n Genre " << genreAwardData.first.c_str() << ", Awards: " << genreAwardData.second;
+        }
+
+        
+        writeFile.close();
+
+    }
+
 };

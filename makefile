@@ -1,5 +1,5 @@
 current:
-	make lab9-mac
+	make lab8
 
 lab9:
 	make compile-file-only dir="lab-9" f="test_unit"
@@ -7,6 +7,8 @@ lab9:
 lab9-mac:
 	make compile-file-only-mac dir="lab-9" f="test_unit"
 
+lab8:
+	make compile-file-only dir="lab-8" f="test_unit"
 
 lab7:
 	make compile-file-only-mac dir="lab-7" f="test_unit"
