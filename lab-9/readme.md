@@ -17,6 +17,10 @@ make lab9-mac
 
 ![](./../img/2022-11-26-15-47-06.png)
 
+### Solution Test cases
+
+- They had been divided into three test cases, one for each problem as proof of work.
+
 ![](./../img/2022-11-26-15-47-13.png)
 
 Output file...
