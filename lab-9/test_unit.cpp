@@ -27,6 +27,10 @@ void problem1(void)
     forecaster.printStats();
 }
 
+void problem2(void){
+    ;
+}
+
 void test_p4(void)
 {
     vector<int> res = p4(2); // Should return 2
