@@ -249,13 +249,18 @@ public:
         if(includeWeightedAverage){
             headerVect.push_back("WeightedAverage");
         }
+        ofstream writeFile;
+        writeFile.open(outputfilename);
+        
 
-        cout << vectorToLine(headerVect) << endl;
+        writeFile << vectorToLine(headerVect) << endl;
 
         for( MonthStats monthStat : this->monthVector ){
             string line_vect = vectorToLine(monthStat.getAsVector(includeMovingAverage, includeWeightedAverage));
-            cout << line_vect << endl;
+            writeFile << line_vect << endl;
         }
+
+        writeFile.close();
 
     }
 
