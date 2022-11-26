@@ -12,6 +12,7 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <map>
 
 #include <cstdio>
 
@@ -29,7 +30,7 @@ void csvRead()
 
     struct MovieInformation
     {
-        string year;
+        int year;
         int length;
         string title;
         string subject;
@@ -42,15 +43,16 @@ void csvRead()
 
         MovieInformation(vector<string> inString)
         {
-            this->year = inString.at(0);
 
             try
             {
                 this->length = stoi(inString.at(1));
+                this->year = stoi(inString.at(0));
             }
             catch (const exception &e)
             {
                 this->length = 0;
+                this->year = 0;
             }
             this->title = inString.at(2);
             this->subject = inString.at(3);
@@ -68,13 +70,23 @@ void csvRead()
             const string SPACE = " ";
             cout << this->year << SPACE << this->length << SPACE << this->actor << endl;
         }
-    };
 
+        int getDecade()
+        {
+            if (this->year <= 999 || this->year > 9999)
+            {
+                printf("Possible error in the code? year was %d\n", this->year);
+            }
+            int decade =  this->year / 10;
+            return decade * 10;
+        }
+    };
 
     string fname = "film.csv.txt";
 
     vector<vector<string>> content;
     vector<MovieInformation> movieCollection;
+    map<int, int> descadeCount;
 
     vector<string> row;
     string line, word;
@@ -94,7 +106,22 @@ void csvRead()
                 row.push_back(word);
             MovieInformation mvInfo(row);
             content.push_back(row);
-            totalFilmLength += mvInfo.length;
+
+            int movieLen = mvInfo.length;
+            int decade = mvInfo.getDecade();
+
+            totalFilmLength += movieLen;
+
+            if (descadeCount.find(decade) != descadeCount.end())
+            {
+                printf("Addint to decade: %d with Length %d and length %d ", decade, descadeCount[decade], movieLen);
+                descadeCount[decade] += movieLen;
+            }
+            else
+            {
+                descadeCount[decade] = 0;
+            }
+
             movieCollection.push_back(mvInfo);
         }
     }
@@ -102,9 +129,14 @@ void csvRead()
         cout << "Could not open the file\n";
 
     int collectionSize = movieCollection.size();
-    for (int i = 0; i < collectionSize; i++)
+    for (int i = 0; i < 10; i++)
     {
         movieCollection.at(i).printContent();
+    }
+
+    for (const auto &decadeData : descadeCount)
+    {
+        std::cout << decadeData.first << "\n";
     }
 
     printf("Total Length: %d, average length %d", totalFilmLength, collectionSize);
