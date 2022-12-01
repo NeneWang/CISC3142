@@ -39,38 +39,64 @@ void problem1(void)
     MovieProcessor movieProcessor(2);
     movieProcessor.read_csv(FILEPATH);
     
-    vector<MovieInformation> v = movieProcessor.movieCollection;
+    vector<MovieInformation> movieVect = movieProcessor.movieCollection;
 
-    int sumLengths = accumulate(begin(v), end(v), 0, [](const int &x, const MovieInformation &y)
+    int sumLengths = accumulate(begin(movieVect), end(movieVect), 0, [](const int &x, const MovieInformation &y)
                              { return x + y.length; });
-
-
 
     printf("\nSum of popularity using accumulate isis %d", sumLengths);
     TEST_ASSERT(sumLengths == movieProcessor.totalFilmLength);
+    
 }
 
 
 
-// void problem2(void){
 
-//     const string FILEPATH = "film.csv.txt";
 
-//     MovieProcessor movieProcessor(2, false);
-//     movieProcessor.read_csv(FILEPATH);
+void problem2(void){
 
-//     movieProcessor.printStats();
-// }
+    const string FILEPATH = "film.csv.txt";
+    MovieProcessor movieProcessor(2);
+    movieProcessor.read_csv(FILEPATH);
+    
+    vector<MovieInformation> movieVect = movieProcessor.movieCollection;
 
-// void problem3(void){
 
-//     const string FILEPATH = "film.csv.txt";
+    sort(movieVect.begin(), movieVect.end(), [](MovieInformation a, MovieInformation b) {
+        return a.length > b.length;
+    });
 
-//     MovieProcessor movieProcessor(2, false);
-//     movieProcessor.read_csv(FILEPATH);
-//     movieProcessor.to_file("film_stats.txt");
+    // Check if they are sorted by length
+    int prev = INT_MAX;
+    for (MovieInformation mvInfo: movieVect){
+        TEST_ASSERT(mvInfo.length <= prev);
+        prev = mvInfo.length;
+    }
+}
 
-// }
+void problem3(void){
+
+    // Searching
+    const string FILEPATH = "film.csv.txt";
+    MovieProcessor movieProcessor(2);
+    movieProcessor.read_csv(FILEPATH);
+    
+    vector<MovieInformation> movieVect = movieProcessor.movieCollection;
+    // Godfather, The
+    string title_search = "Godfather, The";
+
+    find(movieVect.begin(), movieVect.end(), [](MovieInformation a) {
+        return a.title == "Godfather, The";
+    });
+
+    // Check if they are sorted by length
+    // int prev = INT_MAX;
+    // for (MovieInformation mvInfo: movieVect){
+    //     TEST_ASSERT(mvInfo.length <= prev);
+    //     prev = mvInfo.length;
+    // }
+
+}
 
 TEST_LIST = {
     {"problem0", problem0},
