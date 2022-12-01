@@ -20,6 +20,7 @@ struct MovieInformation
     string actress;
     string director;
     string popularity;
+    int popularity_int;
     string awards;
     string image;
     bool debug = false;
@@ -27,16 +28,7 @@ struct MovieInformation
     MovieInformation(vector<string> inString, bool debug = false)
     {
         this->debug = debug;
-        try
-        {
-            this->length = stoi(inString.at(1));
-            this->year = stoi(inString.at(0));
-        }
-        catch (const exception &e)
-        {
-            this->length = 0;
-            this->year = 0;
-        }
+        
         this->title = inString.at(2);
         this->subject = inString.at(3);
         this->actor = inString.at(4);
@@ -45,6 +37,19 @@ struct MovieInformation
         this->popularity = inString.at(7);
         this->awards = inString.at(8);
         this->image = inString.at(9);
+
+        try
+        {
+            this->length = stoi(inString.at(1));
+            this->year = stoi(inString.at(0));
+            this->popularity_int = stoi(this->popularity);
+            
+        }
+        catch (const exception &e)
+        {
+            this->length = 0;
+            this->year = 0;
+        }
 
         if(this->debug){
             this->printContent();
