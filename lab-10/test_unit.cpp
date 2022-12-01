@@ -15,24 +15,35 @@
 #include <map>
 
 #include <cstdio>
+#include <algorithm>
+#include <numeric>
+#include <iterator>
 
 using namespace std;
 
-void problem1(void)
+void problem0(void)
 {
     const string FILEPATH = "film.csv.txt";
 
     MovieProcessor movieProcessor(2);
     movieProcessor.read_csv(FILEPATH);
-    cout << "\nSample: " <<endl;
+    cout << "\nSample: " << endl;
     movieProcessor.printSampleCollection();
-    
 }
 
-
+void problem1(void)
+{
+    const string FILEPATH = "film.csv.txt";
+    MovieProcessor movieProcessor(2);
+    movieProcessor.read_csv(FILEPATH);
+    
+    vector<MovieInformation> v = movieProcessor.movieCollection;
+    int sum = accumulate(begin(v), end(v), 0, [](const int &x, const MovieInformation &y)
+                             { return x + y.popularity; });
+}
 
 // void problem2(void){
-    
+
 //     const string FILEPATH = "film.csv.txt";
 
 //     MovieProcessor movieProcessor(2, false);
@@ -42,7 +53,7 @@ void problem1(void)
 // }
 
 // void problem3(void){
-    
+
 //     const string FILEPATH = "film.csv.txt";
 
 //     MovieProcessor movieProcessor(2, false);
@@ -51,9 +62,8 @@ void problem1(void)
 
 // }
 
-
 TEST_LIST = {
-    {"problem1", problem1},
+    {"problem0", problem0},
     // {"problem2", problem2},
     // {"problem3", problem3},
     {0}};
