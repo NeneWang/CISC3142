@@ -47,7 +47,6 @@ public:
     }
 };
 
-// TODO: Unit Test this.
 class Sample
 {
 private:

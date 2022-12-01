@@ -1,5 +1,10 @@
 current:
-	make lab8-mac
+	make lab10-mac
+
+
+lab10-mac:
+	make compile-file-only-mac dir="lab-10" f="test_unit"
+
 
 lab9:
 	make compile-file-only dir="lab-9" f="test_unit"
@@ -91,7 +96,7 @@ compile-file-only:
 	cd ${dir} && ${f}
 
 compile-file-only-mac: 
-	cd ${dir} && g++ ${f}.cpp -o ${f} 
+	cd ${dir} && g++ -std=c++11 ${f}.cpp -o ${f} 
 	cd ${dir} && ./${f}
 
 compile-file-input: 

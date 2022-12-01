@@ -1,0 +1,25 @@
+
+Averge Lenngth 100
+ Decades: 1920 average length 101 count 23
+ Decades: 1930 average length 93 count 67
+ Decades: 1940 average length 93 count 89
+ Decades: 1950 average length 101 count 124
+ Decades: 1960 average length 118 count 150
+ Decades: 1970 average length 112 count 241
+ Decades: 1980 average length 104 count 586
+ Decades: 1990 average length 102 count 312
+ Genre Action, Awards: 0
+ Genre Adventure, Awards: 1
+ Genre Comedy, Awards: 31
+ Genre Crime, Awards: 0
+ Genre Drama, Awards: 113
+ Genre Fantasy, Awards: 0
+ Genre Horror, Awards: 2
+ Genre Music, Awards: 4
+ Genre Mystery, Awards: 2
+ Genre Romance, Awards: 0
+ Genre Science Fiction, Awards: 4
+ Genre Short, Awards: 0
+ Genre War, Awards: 2
+ Genre Western, Awards: 4
+ Genre Westerns, Awards: 0
