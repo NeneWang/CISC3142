@@ -1,42 +1,13 @@
-# Problem 8
+# Problem 10
 
 ## Get Started
 
-Run the following:
-
-Mac
+Run 
 ```
-make lab8-mac
+make lab-10
 ```
 
-Windows
-```
-make lab8
-```
-
-## Prompt
-
-![](./../img/2022-11-26-16-54-57.png)
-
-
-### My Solution Proof
-
-- Movie processor code found at: `MovieProcessor.cpp`
-- Unit tests found at: `test_unit.cpp`
-- Outputfile found at: `film_stats.txt`
-
-
-![](./../img/2022-11-26-16-56-17.png)
-
-![](./../img/2022-11-26-16-56-25.png)
-
-Output file (film_stats.txt):
-
-![](./../img/2022-11-26-16-57-04.png)
-
-
-
-
+![](./../img/2022-12-05-02-11-58.png)
 
 
 

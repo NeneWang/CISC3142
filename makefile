@@ -5,6 +5,8 @@ current:
 lab10-mac:
 	make compile-file-only-mac dir="lab-10" f="test_unit"
 
+lab10:
+	make compile-file-only dir="lab-10" f="test_unit"
 
 lab9:
 	make compile-file-only dir="lab-9" f="test_unit"
