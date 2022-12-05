@@ -61,8 +61,6 @@ struct MovieInformation
         // printf("%s %s %s", this->year, this->length, this->subject);
         const string SPACE = " ";
         cout << " Year " << this->year << SPACE << "lenght " <<  this->length << SPACE << "Subject " <<  this->subject << SPACE << "director " <<  this->director << SPACE <<"awards " <<   this->awards << SPACE<< "Title: " << this->title  << endl;
-        
-
     }
 
     bool hasAward()
