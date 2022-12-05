@@ -81,27 +81,23 @@ void problem3(void){
     // Godfather, The
     string title_search = "Godfather, The";
 
-    auto movieFound = find(movieVect.begin(), movieVect.end(), [](MovieInformation mv) {
-        return *mv.title == "Godfather, The";
-    });
+    vector<string> titles;
+    for (MovieInformation movieInformation : movieVect){
+        titles.push_back(movieInformation.title);
+    }
+    const string SEARCH_TITLE = "Godfather, The";
+    auto it = find(begin(titles), end(titles), SEARCH_TITLE);
+    int position = it - begin(titles);
+    cout << "\nFound at position: " << position << endl;
+    movieVect.at(position).printContent();
 
-    // if(movieFound != end(movieVect)){
-    //     printf("movie: %s ", *movieFound.title);
-    // }
-
-
-    // Check if they are sorted by length
-    // int prev = INT_MAX;
-    // for (MovieInformation mvInfo: movieVect){
-    //     TEST_ASSERT(mvInfo.length <= prev);
-    //     prev = mvInfo.length;
-    // }
+    TEST_ASSERT(movieVect.at(position).title == SEARCH_TITLE);
 
 }
 
 TEST_LIST = {
     {"problem0", problem0},
     {"problem1", problem1},
-    // {"problem2", problem2},
-    // {"problem3", problem3},
+    {"problem2", problem2},
+    {"problem3", problem3},
     {0}};
