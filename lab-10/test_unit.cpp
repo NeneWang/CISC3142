@@ -49,10 +49,6 @@ void problem1(void)
     
 }
 
-
-
-
-
 void problem2(void){
 
     const string FILEPATH = "film.csv.txt";
@@ -85,9 +81,14 @@ void problem3(void){
     // Godfather, The
     string title_search = "Godfather, The";
 
-    find(movieVect.begin(), movieVect.end(), [](MovieInformation a) {
-        return a.title == "Godfather, The";
+    auto movieFound = find(movieVect.begin(), movieVect.end(), [](MovieInformation mv) {
+        return *mv.title == "Godfather, The";
     });
+
+    // if(movieFound != end(movieVect)){
+    //     printf("movie: %s ", *movieFound.title);
+    // }
+
 
     // Check if they are sorted by length
     // int prev = INT_MAX;
