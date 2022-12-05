@@ -63,6 +63,7 @@ void problem2(void){
     });
 
     // Check if they are sorted by length
+    int INT_MAX = 1000000000;
     int prev = INT_MAX;
     for (MovieInformation mvInfo: movieVect){
         TEST_ASSERT(mvInfo.length <= prev);
