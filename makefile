@@ -1,5 +1,11 @@
 current:
-	make lab10-mac
+	make lab11-mac
+
+lab11-mac:
+	make compile-file-input-mac dir="lab-11" f="test_unit" inputfile="askdynamic"
+
+lab11:
+	make compile-file-only dir="lab-11" f="test_unit"
 
 
 lab10-mac:
@@ -100,6 +106,11 @@ compile-file-only:
 compile-file-only-mac: 
 	cd ${dir} && g++ -std=c++11 ${f}.cpp -o ${f} 
 	cd ${dir} && ./${f}
+
+compile-file-input-mac: 
+	cd ${dir} && g++ ${f}.cpp -o ${f} 
+	cd ${dir} && ./${f} < ${inputfile}
+
 
 compile-file-input: 
 	cd ${dir} && g++ ${f}.cpp -o ${f} 
