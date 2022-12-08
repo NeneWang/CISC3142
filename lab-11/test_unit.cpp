@@ -40,6 +40,29 @@ void precedence(){
     printingContent(++i); //Prints 1
     i = 0;
     printingContent(i++); //Prints 0
+    cout << "________Printing numbers_____" << endl;
+    vector<int> numbers(20, 2);
+    for (auto it = begin(numbers); it != end(numbers); ++it ){
+        ++*it + 20;
+        *it++ += 3;
+        
+    }
+    for (auto it = begin(numbers); it != end(numbers); ++it ){
+        printingContent(*it);
+
+    }
+
+}
+
+void lambda_func(){
+    int i = 2;
+    // You need the i for refering to external code.
+    auto a = [i](int x){
+        cout << i + x << endl;
+    };
+
+    a(3);
+
 }
 
 void test_p4(void)
@@ -53,4 +76,5 @@ TEST_LIST = {
     {"askdynamic", askdynamic},
     {"test_p4", test_p4},
     {"precedence", precedence},
+    {"lambda_func", lambda_func},
     {0}};

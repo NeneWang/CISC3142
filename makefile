@@ -108,7 +108,7 @@ compile-file-only-mac:
 	cd ${dir} && ./${f}
 
 compile-file-input-mac: 
-	cd ${dir} && g++ ${f}.cpp -o ${f} 
+	cd ${dir} && g++ -std=c++11 ${f}.cpp -o ${f} 
 	cd ${dir} && ./${f} < ${inputfile}
 
 
