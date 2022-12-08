@@ -31,38 +31,102 @@ void askdynamic()
     }
 }
 
-void printingContent(int i){
+void printingContent(int i)
+{
     cout << "i = " << i << endl;
 }
 
-void precedence(){
+void precedence()
+{
     int i = 0;
-    printingContent(++i); //Prints 1
+    printingContent(++i); // Prints 1
     i = 0;
-    printingContent(i++); //Prints 0
+    printingContent(i++); // Prints 0
     cout << "________Printing numbers_____" << endl;
     vector<int> numbers(20, 2);
-    for (auto it = begin(numbers); it != end(numbers); ++it ){
+    for (auto it = begin(numbers); it != end(numbers); ++it)
+    {
         ++*it + 20;
         *it++ += 3;
-        
     }
-    for (auto it = begin(numbers); it != end(numbers); ++it ){
+    for (auto it = begin(numbers); it != end(numbers); ++it)
+    {
         printingContent(*it);
-
     }
-
 }
 
-void lambda_func(){
+void lambda_func()
+{
     int i = 2;
     // You need the i for refering to external code.
-    auto a = [i](int x){
+    auto a = [i](int x)
+    {
         cout << i + x << endl;
     };
 
     a(3);
+}
 
+void lambda_square()
+{
+    int i = 5;
+    auto createSquare = [i](int width, int height)
+    {
+        vector<vector<int>> v;
+        for (int i = 0; i < height; i++)
+        {
+            vector<int> row;
+            for (int j = 0; j < width; j++)
+            {
+                row.push_back(i);
+            }
+            v.push_back(row);
+        }
+        return v;
+    };
+
+    auto isEven = [](int x)
+    {
+        return (x % 2 == 0) ? true : false;
+    };
+
+    auto createIsEvenSquare = [isEven, createSquare](int width, int height)
+    {
+        vector<vector<int>> vectorSquare = createSquare(width, height);
+        vector<vector<bool>> ans;
+        for (auto row : vectorSquare)
+        {
+            vector<bool> ansRow;
+            for (int element : row)
+            {
+                ansRow.push_back(isEven(element));
+            }
+            ans.push_back(ansRow);
+        }
+        return ans;
+    };
+
+    auto printSquaresData = [](vector<vector<bool>> vectorSquares)
+    {
+        for (auto row : vectorSquares)
+        {
+            for (auto element : row)
+            {
+                printf(" %d ", element);
+            }
+        }
+    };
+
+    vector<vector<bool>> square = createIsEvenSquare(4, 5);
+    printSquaresData(square);
+    bool b = isEven(7);
+
+    // Multiply row and square and check if
+    for ()
+    {
+    }
+
+    cout << boolalpha << b << endl;
 }
 
 void test_p4(void)
@@ -77,4 +141,5 @@ TEST_LIST = {
     {"test_p4", test_p4},
     {"precedence", precedence},
     {"lambda_func", lambda_func},
+    {"lambda_square", lambda_square},
     {0}};
