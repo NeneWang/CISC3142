@@ -11,24 +11,35 @@ using namespace std;
 void askdynamic()
 {
     int i, n;
-    int *p;
+    int *dynamicpoint;
     cout << "\nHow many numbers would you like to type? ";
     cin >> i;
-    p = new (nothrow) int[i];
-    if (p == nullptr)
+    dynamicpoint = new (nothrow) int[i];
+    if (dynamicpoint == nullptr)
         cout << "Error: memory could not be allocated";
     else
     {
         for (n = 0; n < i; n++)
         {
             cout << "Enter number: ";
-            cin >> p[n];
+            cin >> dynamicpoint[n];
         }
         cout << "You have entered: ";
         for (n = 0; n < i; n++)
-            cout << p[n] << ", ";
-        delete[] p;
+            cout << dynamicpoint[n] << ", ";
+        delete[] dynamicpoint;
     }
+}
+
+void printingContent(int i){
+    cout << "i = " << i << endl;
+}
+
+void precedence(){
+    int i = 0;
+    printingContent(++i); //Prints 1
+    i = 0;
+    printingContent(i++); //Prints 0
 }
 
 void test_p4(void)
@@ -41,4 +52,5 @@ void test_p4(void)
 TEST_LIST = {
     {"askdynamic", askdynamic},
     {"test_p4", test_p4},
+    {"precedence", precedence},
     {0}};
