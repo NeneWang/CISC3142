@@ -241,13 +241,44 @@ void templateExample(void)
          << endl; // call myMax for char
 }
 
+#include <iterator>
+#include <map>
+void multimapExample(void)
+{
+    multimap<int, int> gquiz1; // empty multimap container
+
+    // insert elements in random order
+    gquiz1.insert(pair<int, int>(1, 40));
+    gquiz1.insert(pair<int, int>(2, 30));
+    gquiz1.insert(pair<int, int>(3, 60));
+    gquiz1.insert(pair<int, int>(6, 50));
+    gquiz1.insert(pair<int, int>(6, 10));
+    gquiz1.insert(pair<int, int>(6, 15));
+    gquiz1.insert(pair<int, int>(6, 125));
+
+    multimap<int, int>::iterator itr;
+    cout << "\nThe multimap gquiz1 is : \n";
+    cout << "\tKEY\tELEMENT\n";
+    for (itr = gquiz1.begin(); itr != gquiz1.end(); ++itr)
+    {
+        cout << '\t' << itr->first << '\t' << itr->second
+             << '\n';
+    }
+    cout << endl;
+    for (auto itr = gquiz1.find(6); itr != gquiz1.end(); itr++)
+        cout << itr->first
+             << '\t' << itr->second << '\n';
+}
+
 TEST_LIST = {
     // {"askdynamic", askdynamic},
     // {"test_shared", test_shared},
     // {"managing_memory_directly", managing_memory_directly},
     // {"normalcase", normalcase},
-    {"managedFoo", managedFoo},
-    {"nonManagedFoo", nonManagedFoo},
+    // {"managedFoo", managedFoo},
+    // {"nonManagedFoo", nonManagedFoo},
+    // {"templateExample", templateExample},
+    {"multimapExample", multimapExample},
     // {"test_p4", test_p4},
     // {"precedence", precedence},
     // {"lambda_func", lambda_func},
