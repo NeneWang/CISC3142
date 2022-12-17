@@ -189,7 +189,7 @@ void managing_memory_directly(void)
     auto q = p;          // p and q point to the same memory
     cout << q << " " << p << endl;
     cout << *q << " " << *p << endl;
-    
+
     delete p; // invalidates both p and q
     cout << "address" << endl;
     cout << q << " " << p << endl;
@@ -203,7 +203,8 @@ void managing_memory_directly(void)
     cout << *q << " " << *p << endl;
 }
 
-void normalcase(void){
+void normalcase(void)
+{
     float f1 = 2.0f;
     float &f2 = f1;
     float f3 = f1;
@@ -211,14 +212,27 @@ void normalcase(void){
     f1 = 3;
     cout << f2 << endl;
     cout << f3 << endl;
-    
+}
+
+void managedFoo(void)
+{
+    Foo *pi = new Foo(23);
+    pi->getX();
+}
+
+void nonManagedFoo(void)
+{
+    Foo pi = Foo(23);
+    pi.getX();
 }
 
 TEST_LIST = {
     // {"askdynamic", askdynamic},
     // {"test_shared", test_shared},
     // {"managing_memory_directly", managing_memory_directly},
-    {"normalcase", normalcase},
+    // {"normalcase", normalcase},
+    {"managedFoo", managedFoo},
+    {"nonManagedFoo", nonManagedFoo},
     // {"test_p4", test_p4},
     // {"precedence", precedence},
     // {"lambda_func", lambda_func},
