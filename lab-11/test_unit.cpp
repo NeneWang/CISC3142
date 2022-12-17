@@ -167,9 +167,43 @@ void test_shared(void)
     cout << (*sp).x << endl;
 }
 
+void managing_memory_directly(void)
+{
+    // https://youtu.be/DuJxoTzrCLY
+    int *pi = new int(1024);          // object to which pi points has value 1024
+    string *ps = new string(10, '9'); // *ps is "9999999999"
+    // vector with ten elements with values from 0 to 9
+    vector<int> *pv = new vector<int>{0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+
+    float *stuff = new float();
+    cout << stuff << '\n';
+    cout << *stuff << '\n';
+
+    *stuff = 10.f;
+
+    cout << *stuff << '\n';
+
+    delete stuff;
+
+    int *p(new int(42)); // p points to dynamic memory
+    auto q = p;          // p and q point to the same memory
+    cout << q << " " << p << endl;
+    cout << *q << " " << *p << endl;
+    delete p; // invalidates both p and q
+    cout << q << " " << p << endl;
+    cout << *q << " " << *p << endl;
+    p = nullptr; // indicates that p is no longer bound to an object
+    // stuff = nullptr;
+    cout << "After indiicating is no longer bound" << endl;
+    cout << q << " " << p << endl;
+    // The foollowing will cause an error.
+    cout << *q << " " << *p << endl;
+}
+
 TEST_LIST = {
     // {"askdynamic", askdynamic},
     {"test_shared", test_shared},
+    {"managing_memory_directly", managing_memory_directly},
     // {"test_p4", test_p4},
     // {"precedence", precedence},
     // {"lambda_func", lambda_func},
