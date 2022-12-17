@@ -268,14 +268,106 @@ void multimapExample(void)
     for (auto itr = gquiz1.find(6); itr != gquiz1.end(); itr++)
         cout << itr->first
              << '\t' << itr->second << '\n';
+
+    // Gettin using key
+    auto range = gquiz1.equal_range(6);
+    for (auto it = range.first; it != range.second; it++)
+    {
+        cout << it->first << " " << it->second << endl;
+    }
 }
 
-void multisetExample(void){
+#include <set>
 
+void setExample(void)
+{
+}
+
+void multisetExample(void)
+{
+    multiset<int, greater<int>> gquiz1;
+
+    // insert elements in random order
+    gquiz1.insert(40);
+    gquiz1.insert(30);
+    gquiz1.insert(60);
+    gquiz1.insert(20);
+    gquiz1.insert(50);
+    gquiz1.insert(50);
+    gquiz1.insert(10);
+
+    cout << "\nThe multiset gquiz1 is : \n";
+    for (auto itr = gquiz1.begin(); itr != gquiz1.end(); ++itr)
+    {
+        cout << *itr << " ";
+    }
+    cout << endl;
+
+    // Creating a set, in which they are oredered
+
+    multiset<int> gquiz2(gquiz1.begin(), gquiz1.end());
+    multiset<int> gquiz3(gquiz1.begin(), gquiz1.end());
+
+    // print all elements of the multiset gquiz2
+    cout << "\nThe multiset gquiz2 \n"
+            "after assign from gquiz1 is : \n";
+    for (auto itr = gquiz2.begin(); itr != gquiz2.end(); ++itr)
+    {
+        cout << *itr << " ";
+    }
+    cout << endl;
+
+    // print all elements of the multiset gquiz2
+    cout << "\nThe multiset gquiz3 \n"
+            "after assign from gquiz1 is : \n";
+    for (auto itr = gquiz3.begin(); itr != gquiz3.end(); ++itr)
+    {
+        cout << *itr << " ";
+    }
+    cout << endl;
+
+    // cout << "Erasing all elements up to element with value 30 in gquiz2"
+
+    // cout << "Erasing all elements up to element with value 30 in gquiz2"
+    gquiz3.erase(gquiz3.begin(), gquiz3.find(30));
+    cout << "\nThe multiset gquiz3 \n"
+            "aAfter removing before 30 is: \n";
+    for (auto itr = gquiz3.begin(); itr != gquiz3.end(); ++itr)
+    {
+        cout << *itr << " ";
+    }
+    cout << endl;
+
+    // counting
+
+    cout << "50 appears: " << gquiz3.count(50) << " times" << endl;
+    cout << "gquiz3 has " << gquiz3.size() << " values" << endl;
+    gquiz3.clear();
+    cout << "gquiz3 has " << gquiz3.size() << " values" << endl;
+    cout << "\ngquiz1.lower_bound(40) : \n"
+         << *gquiz1.lower_bound(40) << endl;
+    cout << "gquiz1.upper_bound(40) : \n"
+         << *gquiz1.upper_bound(40) << endl;
+
+    // lower bound and upper bound for multiset gquiz2
+    cout << "gquiz2.lower_bound(40) : \n"
+         << *gquiz2.lower_bound(40) << endl;
+
+    cout << "gquiz2.lower_bound(35) : \n"
+         << *gquiz2.lower_bound(35) << endl;
+
+    cout << "gquiz2.lower_bound(45) : \n"
+         << *gquiz2.lower_bound(45) << endl;
+
+         
+    cout << "gquiz2.upper_bound(45) : \n"
+         << *gquiz2.upper_bound(45) << endl;
+
+    cout << "gquiz2.upper_bound(40) : \n"
+         << *gquiz2.upper_bound(40) << endl;
 }
 
 // void mapExample(void)
-
 
 TEST_LIST = {
     // {"askdynamic", askdynamic},
@@ -285,7 +377,8 @@ TEST_LIST = {
     // {"managedFoo", managedFoo},
     // {"nonManagedFoo", nonManagedFoo},
     // {"templateExample", templateExample},
-    {"multimapExample", multimapExample},
+    // {"multimapExample", multimapExample},
+    {"multisetExample", multisetExample},
     // {"test_p4", test_p4},
     // {"precedence", precedence},
     // {"lambda_func", lambda_func},
