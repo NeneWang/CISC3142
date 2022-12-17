@@ -1,3 +1,14 @@
+<<<<<<< HEAD
+=======
+current:
+	make lab11-mac
+
+lab11-mac:
+	make compile-file-input-mac dir="lab-11" f="test_unit" inputfile="askdynamic"
+
+lab11:
+	make compile-file-only dir="lab-11" f="test_unit"
+>>>>>>> 84d6d60bbfa96052722ea4b013f3979bcbf55324
 
 
 current:
@@ -10,6 +21,8 @@ lab10:
 lab10-mac:
 	make compile-file-only-mac dir="lab-10" f="test_unit"
 
+lab10:
+	make compile-file-only dir="lab-10" f="test_unit"
 
 lab9:
 	make compile-file-only dir="lab-9" f="test_unit"
@@ -103,6 +116,11 @@ compile-file-only:
 compile-file-only-mac: 
 	cd ${dir} && g++ -std=c++11 ${f}.cpp -o ${f} 
 	cd ${dir} && ./${f}
+
+compile-file-input-mac: 
+	cd ${dir} && g++ -std=c++11 ${f}.cpp -o ${f} 
+	cd ${dir} && ./${f} < ${inputfile}
+
 
 compile-file-input: 
 	cd ${dir} && g++ ${f}.cpp -o ${f} 

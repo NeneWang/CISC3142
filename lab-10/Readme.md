@@ -1,42 +1,35 @@
-# Problem 8
+# Problem 10
 
 ## Get Started
 
-Run the following:
-
-Mac
+Run 
 ```
-make lab8-mac
+make lab10
 ```
 
-Windows
+or if in macOS:
 ```
-make lab8
+make lab10-mac
 ```
 
-## Prompt
 
-![](./../img/2022-11-26-16-54-57.png)
+### Solution Proof
 
+![](./../img/2022-12-05-02-11-58.png)
 
-### My Solution Proof
+Tests available at test_unit.cpp
 
-- Movie processor code found at: `MovieProcessor.cpp`
-- Unit tests found at: `test_unit.cpp`
-- Outputfile found at: `film_stats.txt`
-
-
-![](./../img/2022-11-26-16-56-17.png)
-
-![](./../img/2022-11-26-16-56-25.png)
-
-Output file (film_stats.txt):
-
-![](./../img/2022-11-26-16-57-04.png)
+e.g. Test from Problem 2
+```cpp
+// Check if they are sorted by length
+    int prev = INT_MAX;
+    for (MovieInformation mvInfo: movieVect){
+        TEST_ASSERT(mvInfo.length <= prev);
+        prev = mvInfo.length;
+    }
+```
 
 
+### Prompt
 
-
-
-
-
+![](./../img/2022-12-05-02-13-53.png)
