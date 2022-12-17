@@ -122,10 +122,6 @@ void lambda_square()
     bool b = isEven(7);
 
     // Multiply row and square and check if
-    for ()
-    {
-    }
-
     cout << boolalpha << b << endl;
 }
 

@@ -1,18 +1,23 @@
-<<<<<<< HEAD
-=======
 current:
-	make lab11-mac
+	echo "what"
+	make lab11
+
+final_exam:
+	make compile-file-only dir="final_exam" f="test_unit"
+
+
 
 lab11-mac:
 	make compile-file-input-mac dir="lab-11" f="test_unit" inputfile="askdynamic"
 
 lab11:
 	make compile-file-only dir="lab-11" f="test_unit"
->>>>>>> 84d6d60bbfa96052722ea4b013f3979bcbf55324
 
 
 current:
 	make lab10
+
+
 
 
 lab10:
