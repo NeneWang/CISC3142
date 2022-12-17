@@ -235,7 +235,7 @@ T myMax(T x, T y)
 void templateExample(void)
 {
     cout << myMax<int>(3, 7) << endl; // Call myMax for int
-    cout << myMax<double>(3.0, 7.0)
+    cout << myMax<double>(3.2, 7.4)
          << endl; // call myMax for double
     cout << myMax<char>('g', 'e')
          << endl; // call myMax for char
@@ -269,6 +269,13 @@ void multimapExample(void)
         cout << itr->first
              << '\t' << itr->second << '\n';
 }
+
+void multisetExample(void){
+
+}
+
+// void mapExample(void)
+
 
 TEST_LIST = {
     // {"askdynamic", askdynamic},
