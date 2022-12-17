@@ -132,10 +132,37 @@ void test_p4(void)
     loop_vect(res);
 }
 
+#include <memory>
+
+class Foo
+{
+    int x;
+
+public:
+    Foo(int x) : x{x} {}
+    int getX() { return x; }
+    ~Foo()
+    {
+        cout << "~Foo" << endl;
+    }
+};
+
+void test_shared(void)
+{
+    shared_ptr<Foo> sp(new Foo(100));
+    cout << sp->getX() << endl;
+    
+    cout << sp.use_count() << endl;
+    shared_ptr<Foo> sp1 = sp;
+    cout << sp.use_count() << endl;
+    cout << sp1.use_count() << endl;
+}
+
 TEST_LIST = {
-    {"askdynamic", askdynamic},
-    {"test_p4", test_p4},
-    {"precedence", precedence},
-    {"lambda_func", lambda_func},
-    {"lambda_square", lambda_square},
+    // {"askdynamic", askdynamic},
+    {"test_shared", test_shared},
+    // {"test_p4", test_p4},
+    // {"precedence", precedence},
+    // {"lambda_func", lambda_func},
+    // {"lambda_square", lambda_square},
     {0}};
