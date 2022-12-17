@@ -133,16 +133,17 @@ void test_p4(void)
 }
 
 #include <memory>
-
+// https://www.youtube.com/watch?v=-dREJCf2ve4
 class Foo
 {
+public:
     int x;
 
-public:
     Foo(int x) : x{x} {}
     int getX() { return x; }
     ~Foo()
     {
+        // When finished.
         cout << "~Foo" << endl;
     }
 };
@@ -150,12 +151,20 @@ public:
 void test_shared(void)
 {
     shared_ptr<Foo> sp(new Foo(100));
+    cout << sp->x << endl;
+    cout << (*sp).x << endl;
     cout << sp->getX() << endl;
-    
+    cout << "Is unique: " << sp.unique() << endl;
     cout << sp.use_count() << endl;
+
     shared_ptr<Foo> sp1 = sp;
+    cout << "Is unique: " << sp.unique() << endl;
+    cout << sp1->x << endl;
     cout << sp.use_count() << endl;
     cout << sp1.use_count() << endl;
+
+    sp1->x += 1;
+    cout << (*sp).x << endl;
 }
 
 TEST_LIST = {
