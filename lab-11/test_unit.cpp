@@ -78,12 +78,12 @@ void lambda_square()
             vector<int> row;
             for (int j = 0; j < width; j++)
             {
-                cout << j << " " << i << " : " << i*j << endl;
-                row.push_back(i*j);
+                cout << i * j << " ";
+                row.push_back(i * j);
             }
+            cout << endl;
             v.push_back(row);
         }
-        cout << "last " << v.at(height-1).at(width-1) << endl;
         return v;
     };
 
@@ -95,46 +95,24 @@ void lambda_square()
     auto createIsEvenSquare = [isEven, createSquare](int height, int width)
     {
         vector<vector<int>> vectorSquare = createSquare(width, height);
-        
-        cout << "vectorSquare last " << vectorSquare.at(height-1).at(width-1) << endl;
         vector<vector<bool>> ans;
         for (auto row : vectorSquare)
         {
             vector<bool> ansRow;
             for (int element : row)
             {
-                cout << "is " << element << "even ?" << isEven(element)<< endl;
                 ansRow.push_back(isEven(element));
             }
             ans.push_back(ansRow);
         }
-        
-        cout << "ans last " << ans.at(height-1).at(width-1) << endl;
+
         return ans;
     };
 
-    auto printSquaresData = [](vector<vector<bool>> vectorSquares)
-    {
-        for (auto row : vectorSquares)
-        {
-            for (auto element : row)
-            {
-                // printf(" %d ", element);
-                cout << element << " ";
-            }
-            cout << endl;
-        }
-    };
-
     const int height = 4, width = 5;
+    cout << endl;
     vector<vector<bool>> square = createIsEvenSquare(height, width);
-    
-    cout << "square last " << square.at(height-1).at(width-1) << endl;
     printSquaresData(square);
-    bool b = isEven(7);
-
-    // Multiply row and square and check if
-    cout << boolalpha << b << endl;
 }
 
 void test_p4(void)
@@ -371,7 +349,7 @@ void multisetExample(void)
     cout << "gquiz2.lower_bound(45) : \n"
          << *gquiz2.lower_bound(45) << endl;
 
-        cout << "gquiz2.upper_bound(45) : \n"
+    cout << "gquiz2.upper_bound(45) : \n"
          << *gquiz2.upper_bound(45) << endl;
 
     cout << "gquiz2.upper_bound(40) : \n"

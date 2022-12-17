@@ -3,9 +3,23 @@
 
 using namespace std;
 
-
-void loop_vect(vector<int> vect){
-    for(auto val : vect){
+void loop_vect(vector<int> vect)
+{
+    for (auto val : vect)
+    {
         cout << val;
     }
 }
+
+auto printSquaresData = [](vector<vector<bool>> vectorSquares)
+{
+    for (auto row : vectorSquares)
+    {
+        for (auto element : row)
+        {
+            // printf(" %d ", element);
+            cout << element << " ";
+        }
+        cout << endl;
+    }
+};
