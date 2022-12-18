@@ -5,19 +5,14 @@ current:
 final_exam:
 	make compile-file-only dir="final_exam" f="test_unit"
 
-
-
 lab11-mac:
 	make compile-file-input-mac dir="lab-11" f="test_unit" inputfile="askdynamic"
 
 lab11:
 	make compile-file-only dir="lab-11" f="test_unit"
 
-
 current:
 	make lab10
-
-
 
 
 lab10:

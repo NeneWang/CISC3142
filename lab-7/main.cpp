@@ -1,4 +1,4 @@
-#include <vector>
+
 #include <iostream>
 #include <cstdio>
 
@@ -151,7 +151,7 @@ int P3()
     Y.C += 10;
     Y.R += 20;
     Z.C -= 15;
-    cout<<endl;
+    cout << endl;
     Display(X);
     Display(Y);
     Display(Z);

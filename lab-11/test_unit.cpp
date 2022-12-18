@@ -437,6 +437,40 @@ void mapUnorderedexample(void)
     cout << unordered['b'] << endl;
 }
 
+#include <string>
+void stringConversions(void)
+{
+    string int_str = "203";
+    int int_res = stoi(int_str);
+
+    string float_str = "203.23";
+    float float_res = stof(float_str);
+
+    string double_str = "2.12341";
+    double double_res = stod(double_str);
+
+    cout << endl;
+    printf("%d - %.2f - %.3f\n", int_res + 10, float_res + 2, double_res + 1);
+
+    int someinteger = 23;
+    string formattedInteger = to_string(someinteger);
+    printf("string formatted is: %s \n", formattedInteger.c_str());
+    printf("number: %s\n", "12");
+    printf("Pointer %p\n", &float_res);
+    cout << &float_res << endl;
+}
+
+void stringParsing(void)
+{
+    string str_to_substr = "Hello Mister";
+    cout << endl;
+    printf("\nFormatting: %s", str_to_substr.c_str());
+    printf("\nFormatted with first 3 characters %s", str_to_substr.substr(0, 3).c_str());
+    printf("\nLast 3 characters: %s", str_to_substr.substr(str_to_substr.size() - 3).c_str());
+    printf("\nCharacter in third position %c", str_to_substr[2]);
+    printf("\nfinding first e in the string at: %d", str_to_substr.find('e'));
+}
+
 TEST_LIST = {
     // {"askdynamic", askdynamic},
     // {"test_shared", test_shared},
@@ -453,7 +487,9 @@ TEST_LIST = {
     // {"lambda_square", lambda_square},
     // {"precedence", precedence},
     // {"precedence_from_exam", precedence_from_exam},
-    {"setExample", setExample},
-    {"mapExample", mapExample},
-    {"mapUnorderedexample", mapUnorderedexample},
+    // {"setExample", setExample},
+    // {"mapExample", mapExample},
+    // {"mapUnorderedexample", mapUnorderedexample},
+    {"stringConversions", stringConversions},
+    {"stringParsing", stringParsing},
     {0}};
