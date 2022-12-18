@@ -418,21 +418,21 @@ void mapExample(void)
 void mapUnorderedexample(void)
 {
     unordered_map<char, int> unordered;
-    first['a'] = 10;
-    first['c'] = 30;
-    first['d'] = 40;
-    first['b'] = 20;
+    unordered['a'] = 10;
+    unordered['c'] = 30;
+    unordered['d'] = 40;
+    unordered['b'] = 20;
 
-    map<char, int>::iterator it;
+    unordered_map<char, int>::iterator it;
     cout << endl;
-    for (it = first.begin(); it != first.end(); ++it)
+    for (it = unordered.begin(); it != unordered.end(); ++it)
     {
         cout << it->first << " => " << it->second << '\n';
     }
 
-    first['b'] += 12;
-    cout << first['a'] << endl; // Prints 10
-    cout << first['b'] << endl;
+    unordered['b'] += 12;
+    cout << unordered['a'] << endl; // Prints 10
+    cout << unordered['b'] << endl;
 }
 
 TEST_LIST = {
@@ -453,4 +453,5 @@ TEST_LIST = {
     // {"precedence_from_exam", precedence_from_exam},
     // {"setExample", setExample},
     {"mapExample", mapExample},
+    {"mapUnorderedexample", mapUnorderedexample},
     {0}};
