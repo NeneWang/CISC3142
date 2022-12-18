@@ -414,6 +414,27 @@ void mapExample(void)
     cout << first['b'] << endl;
 }
 
+#include <unordered_map>
+void mapUnorderedexample(void)
+{
+    unordered_map<char, int> unordered;
+    first['a'] = 10;
+    first['c'] = 30;
+    first['d'] = 40;
+    first['b'] = 20;
+
+    map<char, int>::iterator it;
+    cout << endl;
+    for (it = first.begin(); it != first.end(); ++it)
+    {
+        cout << it->first << " => " << it->second << '\n';
+    }
+
+    first['b'] += 12;
+    cout << first['a'] << endl; // Prints 10
+    cout << first['b'] << endl;
+}
+
 TEST_LIST = {
     // {"askdynamic", askdynamic},
     // {"test_shared", test_shared},
