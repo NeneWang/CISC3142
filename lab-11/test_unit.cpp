@@ -401,6 +401,7 @@ void mapExample(void)
     first['c'] = 30;
     first['d'] = 40;
     first['b'] = 20;
+    first.erase('c');
 
     map<char, int>::iterator it;
     cout << endl;
@@ -422,6 +423,7 @@ void mapUnorderedexample(void)
     unordered['c'] = 30;
     unordered['d'] = 40;
     unordered['b'] = 20;
+    unordered.erase('a');
 
     unordered_map<char, int>::iterator it;
     cout << endl;
@@ -451,7 +453,7 @@ TEST_LIST = {
     // {"lambda_square", lambda_square},
     // {"precedence", precedence},
     // {"precedence_from_exam", precedence_from_exam},
-    // {"setExample", setExample},
+    {"setExample", setExample},
     {"mapExample", mapExample},
     {"mapUnorderedexample", mapUnorderedexample},
     {0}};
