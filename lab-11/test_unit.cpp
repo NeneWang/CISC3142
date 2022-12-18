@@ -46,12 +46,33 @@ void precedence()
     vector<int> numbers(20, 2);
     for (auto it = begin(numbers); it != end(numbers); ++it)
     {
-        ++*it + 20;
+        ++*it = 20;
         *it++ += 3;
     }
     for (auto it = begin(numbers); it != end(numbers); ++it)
     {
         printingContent(*it);
+    }
+}
+
+auto val(int &i){return i + i;}
+auto val(float i){return i * 10;}
+
+void precedence_from_exam()
+{
+    vector<int> vec(10, 1);
+    for (int &i : vec)
+        int x = val(++i);
+    auto it = vec.begin();
+    while (it != vec.end())
+    {
+        *it = val((float)*it++);
+        it++;
+    }
+    cout << vec[0] << " " << vec[9] << endl;
+
+    for (auto iter : vec){
+        cout << iter << endl;
     }
 }
 
@@ -70,7 +91,7 @@ void lambda_func()
 void lambda_square()
 {
     int i = 5;
-    auto createSquare = [i](int width, int height)
+    auto createSquare = [](int width, int height)
     {
         vector<vector<int>> v;
         for (int i = 0; i < height; i++)
@@ -371,5 +392,7 @@ TEST_LIST = {
     // {"test_p4", test_p4},
     // {"precedence", precedence},
     // {"lambda_func", lambda_func},
-    {"lambda_square", lambda_square},
+    // {"lambda_square", lambda_square},
+    // {"precedence", precedence},
+    {"precedence_from_exam", precedence_from_exam},
     {0}};
