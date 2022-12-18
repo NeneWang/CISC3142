@@ -55,14 +55,14 @@ void precedence()
     }
 }
 
-auto val(int &i){return i + i;}
-auto val(float i){return i * 10;}
+auto val(int &i) { return i + i; }
+auto val(float i) { return i * 10; }
 
 void precedence_from_exam()
 {
     vector<int> vec(10, 1);
     for (int &i : vec)
-        int x = val(++i);
+        int x = val(i += 2);
     auto it = vec.begin();
     while (it != vec.end())
     {
@@ -71,7 +71,8 @@ void precedence_from_exam()
     }
     cout << vec[0] << " " << vec[9] << endl;
 
-    for (auto iter : vec){
+    for (auto iter : vec)
+    {
         cout << iter << endl;
     }
 }
@@ -290,10 +291,6 @@ void multimapExample(void)
 
 #include <set>
 
-void setExample(void)
-{
-}
-
 void multisetExample(void)
 {
     multiset<int, greater<int>> gquiz1;
@@ -379,6 +376,44 @@ void multisetExample(void)
 
 // void mapExample(void)
 
+void setExample(void)
+{
+    set<char> a;
+    a.insert('G');
+    a.insert('F');
+    a.insert('G');
+    a.insert('A');
+    a.insert('Z');
+    a.erase('F');
+    for (auto &str : a)
+    {
+        cout << str << ' ';
+    }
+    cout << '\n';
+}
+
+void mapExample(void)
+{
+    map<char, int> first;
+
+    // initializing
+    first['a'] = 10;
+    first['c'] = 30;
+    first['d'] = 40;
+    first['b'] = 20;
+
+    map<char, int>::iterator it;
+    cout << endl;
+    for (it = first.begin(); it != first.end(); ++it)
+    {
+        cout << it->first << " => " << it->second << '\n';
+    }
+
+    first['b'] += 12;
+    cout << first['a'] << endl; // Prints 10
+    cout << first['b'] << endl;
+}
+
 TEST_LIST = {
     // {"askdynamic", askdynamic},
     // {"test_shared", test_shared},
@@ -394,5 +429,7 @@ TEST_LIST = {
     // {"lambda_func", lambda_func},
     // {"lambda_square", lambda_square},
     // {"precedence", precedence},
-    {"precedence_from_exam", precedence_from_exam},
+    // {"precedence_from_exam", precedence_from_exam},
+    // {"setExample", setExample},
+    {"mapExample", mapExample},
     {0}};
