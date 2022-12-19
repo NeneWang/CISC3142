@@ -481,7 +481,7 @@ void switchEnumsExample(void)
     };
 
     Color colorEnum = red;
-    colorEnum = blue;
+    colorEnum = green;
 
     switch (colorEnum)
     {
@@ -490,7 +490,6 @@ void switchEnumsExample(void)
         break;
     case green:
         cout << "green\n";
-        break;
     case blue:
         cout << "blue\n";
         break;
