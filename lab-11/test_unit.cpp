@@ -471,6 +471,34 @@ void stringParsing(void)
     printf("\nfinding first e in the string at: %d", str_to_substr.find('e'));
 }
 
+void switchEnumsExample(void)
+{
+    enum Color
+    {
+        red,
+        green,
+        blue
+    };
+
+    Color colorEnum = red;
+    colorEnum = blue;
+
+    switch (colorEnum)
+    {
+    case red:
+        cout << "red\n";
+        break;
+    case green:
+        cout << "green\n";
+        break;
+    case blue:
+        cout << "blue\n";
+        break;
+    default:
+        cout << "No color was selected" << endl;
+    }
+}
+
 TEST_LIST = {
     // {"askdynamic", askdynamic},
     // {"test_shared", test_shared},
@@ -490,6 +518,7 @@ TEST_LIST = {
     // {"setExample", setExample},
     // {"mapExample", mapExample},
     // {"mapUnorderedexample", mapUnorderedexample},
-    {"stringConversions", stringConversions},
-    {"stringParsing", stringParsing},
+    // {"stringConversions", stringConversions},
+    // {"stringParsing", stringParsing},
+    {"switchEnumsExample", switchEnumsExample},
     {0}};
