@@ -133,6 +133,8 @@ void problem4(void)
 
     auto last = unique(actionMovies.begin(), actionMovies.end());
     auto last_2 = unique(comedyMovies.begin(), comedyMovies.end());
+    // --last;
+    // printFirsts(actionMovies[last],)
 
     actionMovies.erase(last, actionMovies.end());
     comedyMovies.erase(last_2, comedyMovies.end());
