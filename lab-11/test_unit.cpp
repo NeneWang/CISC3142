@@ -473,6 +473,7 @@ void stringParsing(void)
 
 void switchEnumsExample(void)
 {
+    cout << endl;
     enum Color
     {
         red,
@@ -480,8 +481,7 @@ void switchEnumsExample(void)
         blue
     };
 
-    Color colorEnum = red;
-    colorEnum = green;
+    Color colorEnum = green;
 
     switch (colorEnum)
     {
@@ -496,6 +496,31 @@ void switchEnumsExample(void)
     default:
         cout << "No color was selected" << endl;
     }
+}
+
+void gotoStatement(void)
+{
+    float num, average, sum = 0.0;
+    int i, n;
+
+    cout << "\nMaximum number of inputs: ";
+    cin >> n;
+
+    for (i = 1; i <= n; ++i)
+    {
+        cout << "Enter n" << i << ": ";
+        cin >> num;
+
+        if (num < 0.0)
+        {
+            goto jump;
+        }
+        sum += num;
+    }
+
+    jump:
+        average = sum / (i - 1);
+        cout << "\nAverage = " << average;
 }
 
 TEST_LIST = {
@@ -520,4 +545,5 @@ TEST_LIST = {
     // {"stringConversions", stringConversions},
     // {"stringParsing", stringParsing},
     {"switchEnumsExample", switchEnumsExample},
+    {"gotoStatement", gotoStatement},
     {0}};
