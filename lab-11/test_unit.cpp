@@ -568,9 +568,9 @@ void dynamicPointerEx(void)
     char *c = new char;
     *c = 'A';
 
-
     // Create a dynamic pointer to a structure and assign it values for its members.
-    struct Person{
+    struct Person
+    {
         string name;
         int age;
     };
@@ -580,29 +580,57 @@ void dynamicPointerEx(void)
     p->name = "Nelson";
 
     // Create a dynamic array of integers using a dynamic pointer and initialize it with a set of values.
-    int* arrIntegers = new int[5];
+    int *arrIntegers = new int[5];
     arrIntegers[0] = 1;
     arrIntegers[1] = 1;
 
-    // Create a function that takes a dynamic pointer as an argument and modifies the value pointed to by the pointer. 
-    auto modifyValue = [](int* ptr){
+    // Create a function that takes a dynamic pointer as an argument and modifies the value pointed to by the pointer.
+    auto modifyValue = [](int *ptr)
+    {
         *ptr = 10;
     };
 
-    auto printPointerValue = [](int* ptr){
-        cout << "\nPointer value is: "<< *ptr << endl;
+    auto printPointerValue = [](int *ptr)
+    {
+        cout << "\nPointer value is: " << *ptr << endl;
     };
-    
-    int* new_val = new int(1);
+
+    int *new_val = new int(1);
     printPointerValue(new_val);
     modifyValue(new_val);
     printPointerValue(new_val);
-    
-    //Dealocate that value in memory
-    delete(new_val);
 
+    // Dealocate that value in memory
+    delete (new_val);
     printPointerValue(new_val);
+}
 
+void sharedPointerEx(void)
+{
+    // Write a function that takes a shared pointer as an argument and increments the value pointed to by the pointer. Call this function with a shared pointer to an integer.
+    auto incrementValue = [](shared_ptr<int> ptr)
+    {
+        (*ptr)++;
+    };
+
+    auto showSharedPointer = [](shared_ptr<int> ptr)
+    {
+        printf("\nShared pointer value: %d", *ptr);
+    };
+
+    shared_ptr<int> pointer(new int(5));
+    showSharedPointer(pointer);
+    incrementValue(pointer);
+    showSharedPointer(pointer);
+
+
+    // Write a function that takes a shared pointer as an argument and returns a new shared pointer to a different data type. Call this function with a shared pointer to an integer and print the value of the returned shared pointer.
+
+    // Write a program that creates a shared pointer to an integer and assigns it to a shared pointer to a const integer. Print the value of the shared pointer to a const integer.
+
+    // Write a program that creates a shared pointer to an integer and assigns it to a shared pointer to a volatile integer. Print the value of the shared pointer to a volatile integer.
+
+    // Write a program that creates a shared pointer to an integer and assigns it to a shared pointer to a const volatile integer. Print the value of the shared pointer to a const volatile integer.
 }
 
 TEST_LIST = {
@@ -631,4 +659,5 @@ TEST_LIST = {
     // {"tryCatchError", tryCatchError},
     {"friendExercises", friendExercises},
     {"dynamicPointerEx", dynamicPointerEx},
+    {"sharedPointerEx", sharedPointerEx},
     {0}};
