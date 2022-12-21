@@ -55,28 +55,6 @@ void precedence()
     }
 }
 
-auto val(int &i) { return i + i; }
-auto val(float i) { return i * 10; }
-
-void precedence_from_exam()
-{
-    vector<int> vec(10, 1);
-    for (int &i : vec)
-        int x = val(i += 2);
-    auto it = vec.begin();
-    while (it != vec.end())
-    {
-        *it = val((float)*it++);
-        it++;
-    }
-    cout << vec[0] << " " << vec[9] << endl;
-
-    for (auto iter : vec)
-    {
-        cout << iter << endl;
-    }
-}
-
 void lambda_func()
 {
     int i = 2;
@@ -615,14 +593,24 @@ void sharedPointerEx(void)
 
     auto showSharedPointer = [](shared_ptr<int> ptr)
     {
-        printf("\nShared pointer value: %d", *ptr);
+        printf("\nShared pointer %p value: %d", ptr, *ptr);
     };
 
-    shared_ptr<int> pointer(new int(5));
+    auto showPointer = [](int *ptr)
+    {
+        printf("\nShared pointer %p value: %d", ptr, *ptr);
+    };
+
+    shared_ptr<int>
+    pointer(new int(5));
     showSharedPointer(pointer);
     incrementValue(pointer);
     showSharedPointer(pointer);
-
+    cout << endl;
+    int *pointSample = new int(1);
+    showPointer(pointSample);
+    (*pointSample)++; // If the () are removed then it will modify the pointer first
+    showPointer(pointSample);
 
     // Write a function that takes a shared pointer as an argument and returns a new shared pointer to a different data type. Call this function with a shared pointer to an integer and print the value of the returned shared pointer.
 
@@ -631,6 +619,72 @@ void sharedPointerEx(void)
     // Write a program that creates a shared pointer to an integer and assigns it to a shared pointer to a volatile integer. Print the value of the shared pointer to a volatile integer.
 
     // Write a program that creates a shared pointer to an integer and assigns it to a shared pointer to a const volatile integer. Print the value of the shared pointer to a const volatile integer.
+}
+
+void ioclassesEx()
+{
+    cout << "hi!" << endl;     // writes hi and a newline, then flushes the buffer
+    cout << "flush!" << flush; // writes hi, then flushes the buffer; adds no data
+    cout << "ends!" << ends;   // writes hi and a null, then flushes the buffer
+}
+
+auto val(int &i) { return i + i; }
+auto val(float i) { return i * 10; }
+
+void precedence_from_exam()
+{
+    vector<int> vec(10, 1);
+    for (int &i : vec)
+        int x = val(i += 2);
+    auto it = vec.begin();
+    while (it != vec.end())
+    {
+        *it = val((float)*it++);
+        it++;
+    }
+    cout << vec[0] << " " << vec[9] << endl;
+
+    for (auto iter : vec)
+    {
+        cout << iter << endl;
+    }
+}
+
+#include <algorithm>
+#include <numeric>
+void algoEx(void)
+{
+    vector<int> vec0{
+        3,
+        8,
+        4,
+        1,
+        2,
+        4,
+        5,
+        7,
+        6,
+    };
+
+    sort(vec0.begin(), vec0.end());
+    cout
+        << "defualt behavior of sort is ascending:" << endl;
+
+    cout << "\n\n";
+    loop_vect(vec0);
+    sort(vec0.begin(), vec0.end(), [](int x, int y)
+         { return x > y; });
+    cout << "by passing a boolean lambda function as a fourth parameter we define a different comparison" << endl;
+    loop_vect(vec0);
+
+    int x = accumulate(vec0.begin(), vec0.end(), 100);
+
+    cout << "accumulate yeilds: " << x << endl;
+
+    int m = accumulate(vec0.begin(), vec0.end(), 1, [](int x, int y)
+                       { return x * y; });
+
+    cout << "accumulate with lambda multiplication" << m << endl;
 }
 
 TEST_LIST = {
@@ -657,7 +711,9 @@ TEST_LIST = {
     // {"switchEnumsExample", switchEnumsExample},
     // {"gotoStatement", gotoStatement},
     // {"tryCatchError", tryCatchError},
-    {"friendExercises", friendExercises},
-    {"dynamicPointerEx", dynamicPointerEx},
-    {"sharedPointerEx", sharedPointerEx},
+    // {"friendExercises", friendExercises},
+    // {"dynamicPointerEx", dynamicPointerEx},
+    // {"sharedPointerEx", sharedPointerEx},
+    // {"ioclassesEx", ioclassesEx},
+    {"algoEx", algoEx},
     {0}};

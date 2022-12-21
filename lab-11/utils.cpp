@@ -7,8 +7,9 @@ void loop_vect(vector<int> vect)
 {
     for (auto val : vect)
     {
-        cout << val;
+        cout << val << " ";
     }
+    cout << endl;
 }
 
 auto printSquaresData = [](vector<vector<bool>> vectorSquares)
