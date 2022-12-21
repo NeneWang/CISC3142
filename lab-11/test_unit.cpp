@@ -687,6 +687,10 @@ void algoEx(void)
     cout << "accumulate with lambda multiplication" << m << endl;
 }
 
+void containerOperations(void){
+    
+}
+
 TEST_LIST = {
     // {"askdynamic", askdynamic},
     // {"test_shared", test_shared},
