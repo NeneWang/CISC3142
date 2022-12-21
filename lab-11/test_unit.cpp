@@ -518,9 +518,91 @@ void gotoStatement(void)
         sum += num;
     }
 
-    jump:
-        average = sum / (i - 1);
-        cout << "\nAverage = " << average;
+jump:
+    average = sum / (i - 1);
+    cout << "\nAverage = " << average;
+}
+
+void tryCatchError(void)
+{
+    try
+    {
+        int age = 15;
+        if (age >= 18)
+        {
+            cout << "Access granted - you are old enough.";
+        }
+        else
+        {
+            throw(age);
+        }
+    }
+    catch (int myNum)
+    {
+        cout << "Access denied - You must be at least 18 years old.\n";
+        cout << "Age is: " << myNum;
+    }
+}
+
+#include "exclasses.cpp"
+
+void friendExercises(void)
+{
+    /**
+     * Create a class called "Circle" with private member variables for the radius and color.
+     * Create a public function called "area" that returns the area of the circle.
+     * Create a friend function called "circumference" that takes a Circle object as an argument
+     * and returns the circumference of the circle.
+     */
+    Circle c(2.0, "red");
+    cout << "Circle c has circumference " << circumference(c) << endl;
+}
+
+void dynamicPointerEx(void)
+{
+    // Create a dynamic pointer to an integer and assign it the value of 10.
+    int *int_ptr = new int;
+    *int_ptr = 10;
+
+    // Create a dynamic pointer to a character and assign it the value 'A'.
+    char *c = new char;
+    *c = 'A';
+
+
+    // Create a dynamic pointer to a structure and assign it values for its members.
+    struct Person{
+        string name;
+        int age;
+    };
+
+    Person *p = new Person;
+    p->age = 23;
+    p->name = "Nelson";
+
+    // Create a dynamic array of integers using a dynamic pointer and initialize it with a set of values.
+    int* arrIntegers = new int[5];
+    arrIntegers[0] = 1;
+    arrIntegers[1] = 1;
+
+    // Create a function that takes a dynamic pointer as an argument and modifies the value pointed to by the pointer. 
+    auto modifyValue = [](int* ptr){
+        *ptr = 10;
+    };
+
+    auto printPointerValue = [](int* ptr){
+        cout << "\nPointer value is: "<< *ptr << endl;
+    };
+    
+    int* new_val = new int(1);
+    printPointerValue(new_val);
+    modifyValue(new_val);
+    printPointerValue(new_val);
+    
+    //Dealocate that value in memory
+    delete(new_val);
+
+    printPointerValue(new_val);
+
 }
 
 TEST_LIST = {
@@ -544,6 +626,9 @@ TEST_LIST = {
     // {"mapUnorderedexample", mapUnorderedexample},
     // {"stringConversions", stringConversions},
     // {"stringParsing", stringParsing},
-    {"switchEnumsExample", switchEnumsExample},
-    {"gotoStatement", gotoStatement},
+    // {"switchEnumsExample", switchEnumsExample},
+    // {"gotoStatement", gotoStatement},
+    // {"tryCatchError", tryCatchError},
+    {"friendExercises", friendExercises},
+    {"dynamicPointerEx", dynamicPointerEx},
     {0}};
